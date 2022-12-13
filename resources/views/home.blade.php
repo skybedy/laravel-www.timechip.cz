@@ -4,6 +4,8 @@
 
 @section('h1', 'Hlavní strana')
 
+@section('container-type',"container")
+
 @section('content')
 
 <div class="row heading">

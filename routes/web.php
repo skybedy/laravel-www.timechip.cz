@@ -1,10 +1,11 @@
 <?php
 
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ZavodyController;
 use App\Http\Controllers\ContactController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ResultsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomeController::class);
 
 Route::get('zavody-{raceYear}', [ZavodyController::class, 'index']);
-Route::get('vysledky-{raceYear}', [ResultsController::class, 'index']);
+Route::get('vysledky/{raceYear}', [ResultsController::class, 'index']);
+Route::get('vysledky/{raceYear}/{raceCode}', [ResultsController::class, 'show']);
 
 Route::get('contact', [ContactController::class, 'show'])->name('contact.show');
 Route::post('contac', [ContactController::class, 'send'])->name('contact.send');

@@ -11,7 +11,7 @@
     <title>timechip | @yield('title', 'timechip')</title>
     <link rel="stylesheet" href="/css/fontello.css" media="screen" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/main.css" media="screen" />
+    <link rel="stylesheet" href="/css/main.css" media="screen" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:301,400,700' rel='stylesheet' type='text/css'>
 
 </head>
@@ -19,7 +19,7 @@
 
 
 
-<div class="container">
+<div class="@yield('container-type')">
 
 <nav class="navbar navbar-expand-lg">
   
@@ -55,7 +55,7 @@
           </a>
           <ul class="dropdown-menu">
             @for ($i = $currentYear; $i > 2010; $i--)
-              <li><a class="dropdown-item" href="vysledky-{{ $i }}"> {{ $i }}</a></li>
+              <li><a class="dropdown-item" href="{{ url('vysledky/'.$i) }}"> {{ $i }}</a></li>
             @endfor
           </ul>
         </li>
@@ -73,18 +73,18 @@
     
 
     <div class="container-fluid underbar">
-        <div class="container">
+        <div class="@yield('container-type')">
             <h1>@yield('h1')</h1>
         </div>
     </div>
 
-    <div class="container">
+    <div class="@yield('container-type')">
       @yield('content')
     </div>
     
-    <div class="container">
+    <div class="@yield('container-type')">
         <div class="footer">
-            TimeChip.cz 2004-{{ $currentYear }}
+            timechip.cz 2004-{{ $currentYear }}
         </div>
     </div>
 
