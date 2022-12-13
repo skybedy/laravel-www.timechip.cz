@@ -1,0 +1,201 @@
+body{
+    paddng-top: 50px;
+    font-family: "Open Sans","Helvetica Neue",Arial,verdana,Helvetica,sans-serif;
+    font-size:14px;
+    color: rgb(105, 105, 105);
+    font-weight:300;
+}
+.navbar-default {
+    background-color: #ffffff;
+    border-color: #e1e1e1;
+}
+.navbar-default .navbar-brand {
+    color: #606060;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    color: #8080ff;
+}
+.navbar-default .navbar-text {
+    color: #666666;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #222222;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #8080ff;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #8080ff;
+    background-color: #ffffff;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    color: #8080ff;
+    background-color: #ffffff;
+}
+.navbar-default .navbar-toggle {
+    border-color: #ffffff;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #ffffff;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #606060;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+    border-color: #606060;
+}
+.navbar-default .navbar-link {
+    color: #606060;
+}
+.navbar-default .navbar-link:hover {
+    color: #8080ff;
+}
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #606060;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #8080ff;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #8080ff;
+        background-color: #ffffff;
+    }
+}
+.navbar-brand{
+    margin-left:-12px;
+}
+.navbar-brand img{
+    border:0;
+    display:block;
+    height:34px;
+}
+.underbar{
+    margin-bottom:30px;
+    background: #f9f9f9;
+    border-top:1px solid #e1e1e1;
+    border-bottom:1px solid #e1e1e1;
+}
+.underbar h1{
+    margin:15px 50px 15px 0;
+    font-size:20px;
+    flat:left;
+}
+.heading h2{
+    border-bottom: 1px solid #e1e1e1;
+    font-size:18px;
+}
+
+.content{
+    margin-top:10px;
+}
+
+.glyphicon-calendar,.glyphicon-list-alt,.fa{
+    font-size: 30px;
+    float: right;
+    margin-top: 4px;
+    margin-right: 2px;
+    color: rgba(105, 105, 105, 0.84);
+}
+
+
+
+.bi-home{
+    float: right;
+    margin-top: 6px;
+    marin-right: 1px;
+}
+
+
+
+.fontello-contact{
+    font-size: 14px;
+    marin-top: -1px;
+    margin-right:2px;
+    margin-left: -3px;
+    color: rgba(105, 105, 105, 0.84);
+    float:left;
+}
+
+.boxwrapper,.homepage-imagewrapper{
+    border:1px solid #e1e1e1;
+    background: #f9f9f9;
+    padding:6px;
+    
+}
+
+
+.next-events-heading{
+    padding:9px 0 10px 0;
+    backgrund:red;
+}
+
+
+
+.race-type-icon-wrapper{
+    margin:0 8px 0 0;
+    float:left;
+}
+
+
+.next-event-box{
+   padding:10px; 
+   color:rgb(105, 105, 105);
+}
+
+
+
+.next-event-box:hover{
+    background: #f9f9f9;
+}
+
+.footer {
+    margin:40px 0 0 0;
+    border-top:1px solid #e1e1e1;
+    padding:10px 0;
+    text-align: center;
+}
+.indexbox{
+    magin:2px;
+}
+.indexbox h6{
+    float: left;
+    margin-bottom:0;
+    padding:11px 0 15px 6px;
+}
+.our-news h3{
+    text-decoration: underline;
+    font-size:14px;
+    margin:0;
+    font-weight:bold;
+    line-height:20px
+}
+.our-news p{
+    margin-bottom: 0;
+    line-height:19px;
+}
+.contact{
+    background:#f9f9f9;
+    border:1px solid #e1e1e1;
+}
+.contact h5 {
+    border-bottom: 4px double #eee;
+    paddng-bottom: 10px;
+    fot-size: 20px;
+    lin-height: 25px;
+}
+.contact a{
+    color: rgb(105, 105, 105);
+}
+.underline{
+  font-weight: bold;;
+}
+
+.container{
+    max-width:1158px;
+    width:100%;
+
+}
