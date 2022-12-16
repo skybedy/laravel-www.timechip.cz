@@ -7,6 +7,11 @@ use Illuminate\Contracts\View\View;
 
 class ResultsController extends Controller
 {
+    
+    private $subEventList;
+    
+    
+    
     public function index(Results $results,$raceYear): View
     {
         $resultList =  $results->Results($raceYear);
@@ -24,11 +29,16 @@ class ResultsController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show($raceYear,$raceCode,Results $results): View
+    public function show($raceYear,$raceCode)
     {
-        $result = (array) $results->ResultsOverall($raceYear,$raceCode);
-        $array = json_decode(json_encode($result), true);
-        return view('results.show', ['results' => $array]);
+        $results = new Results($raceYear,$raceCode);
+
+        if($results->getSubEventNumber() > 1)
+        {
+            $this->subEventList = $results->subEventList();
+        }
+        
+        return view('results.show', ['results' => $results->ResultsOverall(),'subEventList' => $this->subEventList,'categoryList' => $results->categoryList()]);
     }
 
 

@@ -3,30 +3,131 @@
 namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
+use LDAP\Result;
 
 class Results
 {
 
-    private $sqlzavod;
-    private $sqlvysledky;
-    private $sqlkategorie;
+    private $sqlZavod;
+    private $sqlVysledky;
+    private $sqlKategorie;
     private $time_order = 1;
     private $event_order = 1;
+    private $zavodyTable;
+    private $raceCode;
+    private $raceYear;
+    private $subEvents;
+    private $subEventOrder = 1;
+    private $sqlZavody;
+    private $sqlPodzavody;
+    private $raceId;
+    private $subEventList;
+    private $subEventNumber;
     
     
-    public function Results($raceYear)
+    public function __construct($raceYear,$raceCode){
+        $this->zavodyTable = "zavody_".$raceYear;
+        $this->sqlZavody = "zavody_".$raceYear;
+        $this->raceCode = str_replace('-','_',$raceCode);
+        $this->raceYear = $raceYear;
+        
+        $this->sqlZavod = "zavod_".$this->raceCode."_".$this->raceYear;
+        $this->sqlVysledky = "vysledky_".$this->raceCode."_".$this->raceYear."_test";
+        $this->sqlKategorie = "kategorie_".$this->raceYear;
+        $this->subEvents = "podzavody_".$this->raceYear;
+        $this->sqlPodzavody = "podzavody_".$this->raceYear;
+         
+        $eventData = (array) $this->eventData()[0];
+        $this->raceId = $eventData['id_zavodu'];
+        $this->subEventNumber = $eventData['pocet_podzavodu']; 
+        
+        $x = $this->eventData()[0];
+        echo $x->id_zavodu;
+    
+    }
+
+    public function getSubEventNumber()
+    {
+        return $this->subEventNumber;
+    }
+
+
+
+
+    
+    public function subEventList()
+    {
+        $sql = "SELECT nazev AS nazev_podzavodu,poradi_podzavodu 
+                FROM $this->sqlPodzavody
+                WHERE id_zavodu = ? ORDER BY poradi_podzavodu ASC";
+
+        return  DB::select($sql,[$this->raceId]);
+
+    }
+
+
+    public function categoryList()
+    {
+        $result = DB::table($this->sqlKategorie)
+                ->select('id_kategorie AS category_id','poradi AS category_order','nazev_k AS category_name','kod_k AS category_code')
+                ->where('id_zavodu','=',$this->raceId)
+                ->orderBy('poradi','ASC')
+                ->get();
+        
+        return $result;
+    }
+
+
+
+
+ 
+
+
+
+
+    
+    
+    
+    
+    
+    private function eventData()
+    {
+        $sql = "SELECT z.id_zavodu,z.nazev_zavodu,z.pocet_podzavodu 
+                FROM $this->sqlZavody z
+                WHERE z.kod_zavodu LIKE ?";
+        
+        return DB::select($sql,[$this->raceCode]);
+    }
+   
+   
+   
+   
+   
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public function Results()
     {
         
-        $zavodyTable = "zavody_".$raceYear;
 
-        $sql =  DB::table($zavodyTable)
+        $sql =  DB::table($this->zavodyTable)
         ->select(
-            $zavodyTable.'.nazev_zavodu',
-            $zavodyTable.'.kod_zavodu',
-            $zavodyTable.'.misto_zavodu',
-            $zavodyTable.'.datum_zavodu',
-            $zavodyTable.'.nove_vysledky',
-            $zavodyTable.'.web')
+            $this->zavodyTable.'.nazev_zavodu',
+            $this->zavodyTable.'.kod_zavodu',
+            $this->zavodyTable.'.misto_zavodu',
+            $this->zavodyTable.'.datum_zavodu',
+            $this->zavodyTable.'.nove_vysledky',
+            $this->zavodyTable.'.web')
         ->where('nove_vysledky','=',1)
         ->orderBy('datum_zavodu','DESC');
        
@@ -35,27 +136,17 @@ class Results
     }
 
 
-   public function ResultsOverallX($raceYear,$raceCode)
-   {
-        $raceCode = str_replace('-','_',$raceCode);
-        $zavod = "zavod_".$raceCode."_".$raceYear;
-        $vysledky = "vysledky_".$raceCode."_".$raceYear."_test";
 
-       // $sql1 = DB::table($vysledky)
-
-   }
    
    
    
    
    
-    public function ResultsOverall($raceYear,$raceCode)
+   
+    public function ResultsOverall()
     {
 
-        $raceCode = str_replace('-','_',$raceCode);
-        $this->sqlzavod = "zavod_".$raceCode."_".$raceYear;
-        $this->sqlvysledky = "vysledky_".$raceCode."_".$raceYear."_test";
-        $this->sqlkategorie = "kategorie_".$raceYear;
+     
         
         $sql1 = DB::select("SELECT 
             v.ids_alias as ids,
@@ -71,7 +162,7 @@ class Results
             o.rocnik,
             t.nazev_tymu,
             k.kod_k 
-        FROM $this->sqlvysledky v,$this->sqlzavod z,osoby o,tymy t,$this->sqlkategorie k
+        FROM $this->sqlVysledky v,$this->sqlZavod z,osoby o,tymy t,$this->sqlKategorie k
         WHERE
             v.race_time > 0 AND 
             v.time_order = ? AND 
@@ -92,6 +183,9 @@ class Results
                 ->orderBy('column_order','ASC')            
                 ->get();
         
+                
+                
+                
                 return ['columns' => $sql2,'lines' => $sql1];
         
     }
