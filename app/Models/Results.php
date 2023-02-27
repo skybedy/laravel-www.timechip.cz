@@ -6,12 +6,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use LDAP\Result;
 
-class Results
+class Results extends BaseModel
 {
 
     private $sqlZavod;
     private $sqlVysledky;
-    private $sqlKategorie;
     private $time_order = 1;
     private $event_order = 1;
     private $zavodyTable;
@@ -19,7 +18,6 @@ class Results
     private $raceYear;
     private $subEvents;
     private $subEventOrder = 1;
-    private $sqlZavody;
     private $sqlPodzavody;
     private $raceId;
     private $subEventList;
@@ -27,14 +25,15 @@ class Results
     
     
     public function __construct($raceYear,$raceCode){
+        parent::__construct($raceYear);
+        
         $this->zavodyTable = "zavody_".$raceYear;
-        $this->sqlZavody = "zavody_".$raceYear;
         $this->raceCode = str_replace('-','_',$raceCode);
         $this->raceYear = $raceYear;
         
         $this->sqlZavod = "zavod_".$this->raceCode."_".$this->raceYear;
         $this->sqlVysledky = "vysledky_".$this->raceCode."_".$this->raceYear."_test";
-        $this->sqlKategorie = "kategorie_".$this->raceYear;
+      
         $this->subEvents = "podzavody_".$this->raceYear;
         $this->sqlPodzavody = "podzavody_".$this->raceYear;
          

@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Support\Facades\DB;
 
 
-class Zavody
+class Zavody extends BaseModel
 {
 
     private $zavodyTable;
    
     public function __construct($raceYear)
     {
-        $this->zavodyTable = 'zavody_'.$raceYear;
+        parent::__construct($raceYear,null);
     }
 
     
