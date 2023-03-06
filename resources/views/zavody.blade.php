@@ -13,6 +13,7 @@
 @section('content')
     
     <table class="table table-hover">
+        
         @foreach ($races as $race)
             <tr>
                 <td>{{$race->nazev_zavodu}}</td>

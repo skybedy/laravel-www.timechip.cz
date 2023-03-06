@@ -4,6 +4,8 @@
 
 @section('h1',  'Kontakt')
 
+@section('container-type',"container")
+
 @section('content')
     
 <div class="row">
