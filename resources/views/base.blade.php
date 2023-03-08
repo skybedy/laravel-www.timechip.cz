@@ -11,11 +11,10 @@
     <title>timechip | @yield('title', 'timechip')</title>
     <link rel="stylesheet" href="/css/fontello.css" media="screen" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet" href="/css/main.css" media="screen" />
-    <link rel="stylesheet" href="/css/app.css" media="screen" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:301,400,700' rel='stylesheet' type='text/css'>
-    @vite('resources/css/app.css')
-    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.45/dist/vue.global.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/vue@3.2.45/dist/vue.global.min.js"></script>
   </head>
 <body>
 
