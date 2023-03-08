@@ -14,9 +14,20 @@
     
 
 
-{{ Form::open(array('url' => 'foo/bar')) }}
-    echo Form::label('email', 'E-Mail Address');
-{{ Form::close() }}
+<form class="well form-horizontal">
+    <div class="form-group">
+        <label class="col-md-4 control-label">First Name</label>  
+        <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <input  name="first_name" placeholder="First Name" class="form-control"  type="text">
+          </div>
+        </div>
+      </div>    
+
+
+
+</form>
 
 
 
