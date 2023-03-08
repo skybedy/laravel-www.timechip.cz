@@ -46,7 +46,7 @@
           </a>
           <ul class="dropdown-menu">
             @for ($i = $currentYear; $i > 2008; $i--)
-              <li><a class="dropdown-item" href="zavody/{{ $i }}"> {{ $i }}</a></li>
+              <li><a class="dropdown-item" href="{{route('race',['raceYear' => $i])}}"> {{ $i }}</a></li>
             @endfor
           </ul>
         </li>

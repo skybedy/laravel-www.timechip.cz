@@ -12,7 +12,7 @@
 
 @section('content')
     
-    <table class="table table-hover">
+    <table class="table table-hover text-3xl">
         
         @foreach ($races as $race)
             <tr>

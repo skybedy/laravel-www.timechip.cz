@@ -23,7 +23,7 @@ use App\Http\Controllers\RegistrationController;
 
 Route::get('/', HomeController::class);
 
-Route::get('zavody/{raceYear}', [ZavodyController::class, 'index']);
+Route::get('zavody/{raceYear}', [ZavodyController::class, 'index'])->name('race');
 Route::get('vysledky/{raceYear}', [ResultsController::class, 'index']);
 Route::get('vysledky/{raceYear}/{raceId}', [ResultsController::class, 'show']);
 
