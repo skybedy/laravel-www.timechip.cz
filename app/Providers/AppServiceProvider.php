@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 
 use Illuminate\Support\Facades\View;
 
+use Illuminate\Support\Facades\Schema;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -34,7 +36,7 @@ view()->composer('*',function($view) {
      
 });
 
-
+Schema::defaultStringLength(191);
         
     }
 }

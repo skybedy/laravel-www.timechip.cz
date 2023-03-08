@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ZavodyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ResultsController;
+use App\Http\Controllers\RegistrationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +25,10 @@ Route::get('/', HomeController::class);
 
 Route::get('zavody/{raceYear}', [ZavodyController::class, 'index']);
 Route::get('vysledky/{raceYear}', [ResultsController::class, 'index']);
-Route::get('vysledky/{raceYear}/{raceCode}', [ResultsController::class, 'show']);
+Route::get('vysledky/{raceYear}/{raceId}', [ResultsController::class, 'show']);
+
+Route::get('registrace/{raceYear}/{raceId}', [RegistrationController::class, 'index'])->name('registration');
+
 
 Route::get('contact', [ContactController::class, 'show'])->name('contact.show');
 Route::post('contac', [ContactController::class, 'send'])->name('contact.send');
