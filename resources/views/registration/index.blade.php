@@ -15,32 +15,75 @@
 
 
 
-<form>
 
-  <div class="form-group">
-  <label class="control-label" for="email">Email</label>
-  <div class="input-group">
-    <span class="input-group-text"><span class="fas fa-biking"></span></span>
-    <input class="form-control" id="email" name="email" type="text"/>
+
+
+<form class="bg-primary">
+  <div class="row mb-3">
+    <label for="firstname" class="col-sm-2 col-form-label text-end">Jméno</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <span class="input-group-text"><span class="fas fa-user-large"></span></span>
+        <input class="form-control" id="name" name="firstname" type="text"/>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mb-3">
+    <label for="lastname" class="col-sm-2 col-form-label text-end">Příjmení</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <span class="input-group-text"><span class="fas fa-user-large" style="width:1.2rem"></span></span>
+        <input class="form-control" id="lastname" name="lastname" type="text"/>
+      </div>
+    </div>
   </div>
 
+  <div class="row mb-3">
+    <label for="gender" class="col-sm-2 col-form-label text-end">Pohlaví</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <span class="input-group-text"><span class="fas fa-venus-mars" style="width:1.2rem"></span></span>
+        <select class="form-select" id="gender" name="gender">
+        <option selected>Vyberte</option>
+          <option>Muž</option>
+          <option>Žena</option>
+        </select>
+      </div>
+    </div>
+  </div>
 
-
-
-  <div class="form-group my-1">
-  <div class="input-group flex-nowrap">
-  <span class="input-group-text" id="addon-wrapping"><span class="fas fa-biking"></span></span>
-  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
-</div>
-
-</div>
-
-
-
+  <div class="row mb-3">
+    <label for="birthyear" class="col-sm-2 col-form-label text-end">Ročník</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <span class="input-group-text"><span class="fas fa-calendar" style="width:1.2rem"></span></span>
+        <select class="form-select" id="birthyear" name="birthyear">
+        <option selected>Vyberte</option>
+          <option>1961</option>
+          <option>1933</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mb-3">
+    <label for="birthyear" class="col-sm-2 col-form-label text-end">Stát</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <span class="input-group-text"><span class="fas fa-globe" style="width:1.2rem"></span></span>
+        <select class="form-select" id="birthyear" name="birthyear">
+        <option selected>Vyberte</option>
+          <option>1961</option>
+          <option>1933</option>
+        </select>
+      </div>
+    </div>
+  </div>
 
 </form>
 
-<hr>
+
 
 
 
