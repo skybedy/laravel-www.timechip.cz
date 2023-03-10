@@ -18,7 +18,7 @@
 
 
 
-<form class="bg-primary">
+<form>
   <div class="row mb-3">
     <label for="firstname" class="col-sm-2 col-form-label text-end">Jméno</label>
     <div class="col-sm-9">
@@ -46,8 +46,8 @@
         <span class="input-group-text"><span class="fas fa-venus-mars" style="width:1.2rem"></span></span>
         <select class="form-select" id="gender" name="gender">
         <option selected>Vyberte</option>
-          <option>Muž</option>
-          <option>Žena</option>
+          <option val="M">Muž</option>
+          <option val="Z">Žena</option>
         </select>
       </div>
     </div>
@@ -68,15 +68,48 @@
   </div>
   
   <div class="row mb-3">
-    <label for="birthyear" class="col-sm-2 col-form-label text-end">Stát</label>
+    <label for="contry" class="col-sm-2 col-form-label text-end">Stát</label>
     <div class="col-sm-9">
       <div class="input-group">
         <span class="input-group-text"><span class="fas fa-globe" style="width:1.2rem"></span></span>
-        <select class="form-select" id="birthyear" name="birthyear">
+        <select class="form-select" id="country" name="country">
         <option selected>Vyberte</option>
-          <option>1961</option>
-          <option>1933</option>
-        </select>
+        <option val="CZE">Česká republika</option>
+        <option val="SVK">Slovenská republika</option>
+          @foreach ($countries as $country)
+             <option val="{{ $country->code }}">{{ $country->name }}</option>
+          @endforeach
+      </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="lastname" class="col-sm-2 col-form-label text-end">Telefon</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <span class="input-group-text"><span class="fas fa-phone" style="width:1.2rem"></span></span>
+        <input class="form-control" id="lastname" name="lastname" type="text"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="lastname" class="col-sm-2 col-form-label text-end">Telefon alternativní</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <span class="input-group-text"><span class="fas fa-phone" style="width:1.2rem"></span></span>
+        <input class="form-control" id="lastname" name="lastname" type="text"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="lastname" class="col-sm-2 col-form-label text-end">Email</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <span class="input-group-text"><span class="fas fa-envelope" style="width:1.2rem"></span></span>
+        <input class="form-control" id="lastname" name="lastname" type="text"/>
       </div>
     </div>
   </div>

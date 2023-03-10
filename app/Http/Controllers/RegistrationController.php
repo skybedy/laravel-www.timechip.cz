@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Country;
+
 
 class RegistrationController extends Controller
 {
@@ -13,9 +15,10 @@ class RegistrationController extends Controller
      */
     public function index($raceYear)
     {
-        //$zavody = new Zavody($raceYear);
         
-        return view('registration/index');
+        return view('registration/index',[
+            'countries' => Country::orderBy('name','asc')->get()
+        ]);
     }
 
 }
