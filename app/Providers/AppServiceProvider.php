@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\View;
 
 use Illuminate\Support\Facades\Schema;
 
+use App\Models\Select;
+
+use Illuminate\Http\Request;
+
+
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -17,7 +23,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+       $this->app->bind(Select::class, function ($app) {
+            
+        //    $request = $this->app->request;
+            //$request = $app->make(Request::class);
+            $x['race_year'] = 2023;
+            $x['race_id'] = 3;
+            return new Select($x);
+
+        });
     }
 
     /**
@@ -30,13 +44,13 @@ class AppServiceProvider extends ServiceProvider
         View::share('currentYear', date("Y")); 
 
 
-// Using view composer to set following variables globally
-view()->composer('*',function($view) {
-    $view->with('user', "bl");
-     
-});
+        // Using view composer to set following variables globally
+        view()->composer('*',function($view) {
+            $view->with('user', "bl");
+            
+        });
 
-Schema::defaultStringLength(191);
+        Schema::defaultStringLength(191);
         
     }
 }

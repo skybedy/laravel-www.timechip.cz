@@ -114,6 +114,35 @@
     </div>
   </div>
 
+  @if($selects->count() > 0)
+ @php
+ 
+ @endphp
+
+    @foreach ($selects as $select)
+    
+    <div class="row mb-3">
+      <label for="contry" class="col-sm-2 col-form-label text-end">{{ $select['name'] }}</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <span class="input-group-text"><span class="fas fa-globe" style="width:1.2rem"></span></span>
+        <select class="form-select" id="country" name="country">
+        <option selected>Vyberte</option>
+      </select>
+      </div>
+    </div>
+  </div>
+
+
+
+    @endforeach
+
+  @endif
+
+
+
+
+
 </form>
 
 
