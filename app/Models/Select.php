@@ -14,22 +14,20 @@ class Select extends Model
     private $raceId;
 
 
-    public function __construct(array $a)
+    //public function __construct(int $year)
+    //{
+       // dd($a);
+     // $x = $a['race_year'];
+       
+       
+     // $this->raceYear = $year;
+     // $this->raceId  = $id;
+   // }
+
+
+    public function test($raceId)
     {
-        //dd($a);
-        foreach($a as $val){
-            //dump($val);
-            $x =  $val["race_year"];
-
-        }
-        //$this->raceYear = $attr['a'];
-      //  $this->raceId  = $a[0];
-    }
-
-
-    public function test()
-    {
-        return Select::where('race_id','=',$this->raceId)->get();
+        return  Select::where('race_id','=',$raceId)->where('event_order','=',1)->get();
     }
 
 

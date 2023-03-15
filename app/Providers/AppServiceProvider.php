@@ -23,15 +23,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-       $this->app->bind(Select::class, function ($app) {
+       //$this->app->bind(Select::class, function ($app) {
             
         //    $request = $this->app->request;
             //$request = $app->make(Request::class);
-            $x['race_year'] = 2023;
-            $x['race_id'] = 3;
-            return new Select($x);
+         //   $x['race_year'] = 2023;
+           // $x['race_id'] = 3;
+            //return new Select(2023);
 
-        });
+        //});
     }
 
     /**
