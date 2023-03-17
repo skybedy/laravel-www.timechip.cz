@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Select extends Model
+class Race  extends Model
 {
-    protected $table = 'select';
+    protected $primaryKey = 'id_zavodu';
 }

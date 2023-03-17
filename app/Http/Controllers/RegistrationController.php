@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Country;
-use App\Models\Select;
+use App\Interfaces\SelectRepositoryInterface;
+use App\Interfaces\RegistrationRepositoryInterface;
 
 
 class RegistrationController extends Controller
@@ -13,7 +14,7 @@ class RegistrationController extends Controller
     private $select;
     
     
-    public function __construct(\App\Models\Select $select)
+    public function __construct(SelectRepositoryInterface $select)
     {
         $this->select = $select;
     }
@@ -24,23 +25,40 @@ class RegistrationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($raceYear,$raceId,Select $select)
+    public function index($raceYear,$raceId,RegistrationRepositoryInterface $registration,Request $request,$_eventOrder = null)
     {
         
-       // $selects = Select::where('race_id','=',$raceId)->where('event_order','=',1);
-       $x = $this->select->test($raceId);
-       foreach($x as $y){
-       foreach(json_decode($y['content']) as $d){
-
-      // dump($d);
-    }
-}
-
+        isset($_eventOrder) ? $eventOrder = $_eventOrder :   $eventOrder = 1;
         
-      
+        $x = $this->select->getTest($raceId);
+        dd($eventOrder);
+        
+        $eventList = [];
+
+        $eventNumber = $registration->getRaceOption()->pocet_podzavodu;
+
+        if($eventNumber > 1)
+        {
+            $eventList = $registration->getEventList();
+        }
+        
+        $eventList = $registration->getEventList();
+        
+        $eventNumber = count($eventList);
+        
+        
+        dd($eventList);
+        
+        
+        
+        
+        
         return view('registration/index',[
+            'eventNumber' => $eventNumber,
+            'eventList' => $registration->getEventList(),
             'countries' => Country::orderBy('name','asc')->get(),
-            'selects' => $select->test($raceId)
+            'selects' => $x,
+            'formtype' => 1
         ]);
     }
 

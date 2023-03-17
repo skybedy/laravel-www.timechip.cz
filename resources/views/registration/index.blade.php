@@ -1,5 +1,6 @@
 @extends('base')
 
+
 @php
     $title = 'Registrace';
 @endphp
@@ -16,9 +17,18 @@
 
 
 
-
-
 <form>
+
+
+
+
+@if(count($eventList) > 1)
+  @include('registration.event_list_select',['eventList' => $eventList])
+@endif
+
+
+
+
   <div class="row mb-3">
     <label for="firstname" class="col-sm-2 col-form-label text-end">Jméno</label>
     <div class="col-sm-9">
@@ -46,8 +56,8 @@
         <span class="input-group-text"><span class="fas fa-venus-mars" style="width:1.2rem"></span></span>
         <select class="form-select" id="gender" name="gender">
         <option selected>Vyberte</option>
-          <option val="M">Muž</option>
-          <option val="Z">Žena</option>
+          <option value="M">Muž</option>
+          <option value="Z">Žena</option>
         </select>
       </div>
     </div>
@@ -74,10 +84,10 @@
         <span class="input-group-text"><span class="fas fa-globe" style="width:1.2rem"></span></span>
         <select class="form-select" id="country" name="country">
         <option selected>Vyberte</option>
-        <option val="CZE">Česká republika</option>
-        <option val="SVK">Slovenská republika</option>
+        <option value="CZE">Česká republika</option>
+        <option value="SVK">Slovenská republika</option>
           @foreach ($countries as $country)
-             <option val="{{ $country->code }}">{{ $country->name }}</option>
+             <option value="{{ $country->code }}">{{ $country->name }}</option>
           @endforeach
       </select>
       </div>
@@ -115,23 +125,20 @@
   </div>
 
   @if($selects->count() > 0)
- @php
-  
- @endphp
 
     @foreach ($selects as $select)
     
       
     
     <div class="row mb-3">
-      <label for="contry" class="col-sm-2 col-form-label text-end">{{ $select['name'] }}</label>
+      <label for="country" class="col-sm-2 col-form-label text-end">{{ $select['name'] }}</label>
     <div class="col-sm-9">
       <div class="input-group">
         <span class="input-group-text"><span class="fas fa-globe" style="width:1.2rem"></span></span>
         <select class="form-select" id="country" name="country">
         <option selected>Vyberte</option>
         @foreach(json_decode($select['content']) as $x)
-           <option val="{{ $x }}">{{ $x }}</option>
+           <option value="{{ $x }}">{{ $x }}</option>
         @endforeach
       </select>
       </div>
@@ -149,6 +156,11 @@
 
 
 </form>
+
+@include('registration.formtypes.type_'.$formtype)
+
+
+
 
 
 

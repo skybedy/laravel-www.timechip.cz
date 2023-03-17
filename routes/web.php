@@ -3,10 +3,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ZavodyController;
+use App\Http\Controllers\RaceController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ResultsController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\TestController;
 
 
 /*
@@ -21,14 +22,16 @@ use App\Http\Controllers\RegistrationController;
 */
 
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('index');
 
-Route::get('zavody/{raceYear}', [ZavodyController::class, 'index'])->name('race');
+Route::get('zavody/{raceYear}', [RaceController::class, 'index'])->name('race');
 Route::get('vysledky/{raceYear}', [ResultsController::class, 'index']);
 Route::get('vysledky/{raceYear}/{raceId}', [ResultsController::class, 'show']);
 
-Route::get('registrace/{raceYear}/{raceId}', [RegistrationController::class, 'index'])->name('registration');
+Route::get('registrace/{raceYear}/{raceId}/{eventOrder?}', [RegistrationController::class, 'index'])->name('registration');
 
 
 Route::get('contact', [ContactController::class, 'show'])->name('contact.show');
 Route::post('contac', [ContactController::class, 'send'])->name('contact.send');
+
+Route::get('test/{year}', TestController::class);
