@@ -22,14 +22,31 @@ class RegistrationRepository extends BaseRepository implements RegistrationRepos
     }
 
 
+    public function getEventAgeRange()
+    {
+        return DB::table($this->shortcutCategory)
+                ->select(DB::raw($this->raceYear." - MIN(vek_start) AS year_end,".$this->raceYear." - MAX(vek_konec) AS year_start"))
+                ->where('id_zavodu',$this->raceId)
+                ->where('poradi_podzavodu',$this->eventOrder)
+                ->get()->toArray();
+    } 
+    
+    
     public function getEventList()
     {
-        return DB::table($this->shortcutEvents)
+        $eventList = DB::table($this->shortcutEvents)
         ->select('nazev','poradi_podzavodu','registration_form_type')
         ->where('id_zavodu',$this->raceId)
         ->whereNotNull('registration_form_type')
         ->OrderBy('poradi_podzavodu','ASC')
         ->get();
+
+        return[
+            'event_list' => $eventList,
+            'current_event' =>  $eventList->firstWhere('poradi_podzavodu', $this->eventOrder),
+            'race_year' => $this->raceYear,
+            'race_id' => $this->raceId
+        ];
     }
 
 //pocet_podzavodu asi pujde pryč, nazev jeste nevim
@@ -43,15 +60,5 @@ class RegistrationRepository extends BaseRepository implements RegistrationRepos
         }
 
     }
-
-
-
-
-
-
-
-
-  
-    
 
 }

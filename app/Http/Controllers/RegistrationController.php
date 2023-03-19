@@ -25,38 +25,21 @@ class RegistrationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($raceYear,$raceId,RegistrationRepositoryInterface $registration,Request $request,$_eventOrder = null)
+    public function index($raceYear,$raceId,RegistrationRepositoryInterface $registration)
     {
         
-        isset($_eventOrder) ? $eventOrder = $_eventOrder :   $eventOrder = 1;
-        
-        $x = $this->select->getTest($raceId);
-        dd($eventOrder);
-        
-        $eventList = [];
-
-        $eventNumber = $registration->getRaceOption()->pocet_podzavodu;
-
-        if($eventNumber > 1)
+        if(!isset($registration->getEventList()['current_event']))
         {
-            $eventList = $registration->getEventList();
+            abort(404);
         }
-        
-        $eventList = $registration->getEventList();
-        
-        $eventNumber = count($eventList);
-        
-        
-        dd($eventList);
-        
-        
-        
-        
-        
+
+        $x = $this->select->getTest($raceId);
+     
+
         return view('registration/index',[
-            'eventNumber' => $eventNumber,
             'eventList' => $registration->getEventList(),
             'countries' => Country::orderBy('name','asc')->get(),
+            'eventAgeRange' => $registration->getEventAgeRange(),
             'selects' => $x,
             'formtype' => 1
         ]);

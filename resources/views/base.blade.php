@@ -61,7 +61,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('registration',['raceYear' => 2023,'raceId' => 3]) }}">Registrace</a>
+          <a class="nav-link" href="{{ route('registration',['raceYear' => 2023,'raceId' => 8]) }}">Registrace</a>
         </li>
 
         <li class="nav-item">

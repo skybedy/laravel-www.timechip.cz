@@ -6,4 +6,5 @@ interface RegistrationRepositoryInterface
 {
     public function getRaceOption();
     public function getEventList();
+    public function getEventAgeRange();
 }
