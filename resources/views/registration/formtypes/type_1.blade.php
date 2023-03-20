@@ -1,11 +1,11 @@
-<form name="add-blog-post-form" id="add-blog-post-form" method="post" action="{{url('store-form')}}">
+<form name="add-blog-post-form" id="add-blog-post-form" method="post" action="{{ route('registration_post',['raceYear' => 2023,'raceId' => 8]) }}">
     @csrf
     <div class="row mb-3">
         <label for="firstname" class="col-sm-2 col-form-label text-end">Jméno</label>
         <div class="col-sm-9">
         <div class="input-group">
             <span class="input-group-text"><span class="fas fa-user-large"></span></span>
-            <input class="form-control" id="firstname" name="firstname" type="text"/>
+            <input class="form-control" id="firstname" name="firstname" type="text" value="{{ old('firstname') }}""/>
         </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
         <div class="col-sm-9">
             <div class="input-group">
                 <span class="input-group-text"><span class="fas fa-user-large" style="width:1.2rem"></span></span>
-                <input class="form-control" id="surname" name="surname" type="text"/>
+                <input class="form-control" id="surname" name="surname" type="text" value="{{ old('surname') }}"/>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
             <div class="input-group">
                 <span class="input-group-text"><span class="fas fa-venus-mars" style="width:1.2rem"></span></span>
                 <select class="form-select" id="pohlavi" name="pohlavi">
-                    <option selected>Vyberte</option>
+                    <option selected disabled>Vyberte</option>
                     <option value="M">Muž</option>
                     <option value="Z">Žena</option>
                 </select>
@@ -35,12 +35,12 @@
     </div>
 
     <div class="row mb-3">
-        <label for="den_narozeni" class="col-sm-2 col-form-label text-end">Ročník</label>
+        <label for="rok_narozeni" class="col-sm-2 col-form-label text-end">Ročník</label>
         <div class="col-sm-9">
             <div class="input-group">
                 <span class="input-group-text"><span class="fas fa-calendar" style="width:1.2rem"></span></span>
-                <select class="form-select" id="den_narozeni" name="den_narozeni">
-                    <option selected>Vyberte</option>
+                <select class="form-select" id="rok_narozeni" name="rok_narozeni">
+                    <option selected disabled>Vyberte</option>
                      @for ($i = $event_age_range[0]->year_start; $i <= $event_age_range[0]->year_end ; $i++)
                         <option value="{{ $i }}">{{ $i }}</option>
                     @endfor
@@ -55,7 +55,7 @@
             <div class="input-group">
                 <span class="input-group-text"><span class="fas fa-globe" style="width:1.2rem"></span></span>
                 <select class="form-select" id="stat" name="stat">
-                    <option selected>Vyberte</option>
+                    <option selected disabled>Vyberte</option>
                     <option value="CZE">Česká republika</option>
                     <option value="SVK">Slovenská republika</option>
                     @foreach ($countries as $country)
