@@ -21,7 +21,7 @@
         </ul>
     </div>
 @endif
-  <form name="add-blog-post-form" id="add-blog-post-form" method="post" action="{{ route('registration_post',['raceYear' => 2023,'raceId' => 8]) }}">
+  <form name="model" id="add-blog-post-form" method="post" action="{{ route('registration_post',['raceYear' => 2023,'raceId' => 8]) }}">
     @csrf
   
   @if(count($eventList['event_list']) > 1)
@@ -29,7 +29,8 @@
                                                   'eventList' => $eventList['event_list'],
                                                   'race_year' => $eventList['race_year'],
                                                   'race_id' => $eventList['race_id'],
-                                                  'current_event_order' => $eventList['current_event']->poradi_podzavodu
+                                                  'current_event_order' => $eventList['current_event']->poradi_podzavodu,
+                                                  'race_name' => $raceName
                                                 ])
                                                   
   @endif

@@ -1,46 +1,48 @@
+    <input type="hidden" name="registration_type" value="1" />
+    
     <div class="row mb-3">
         <label for="firstname" class="col-sm-2 col-form-label text-end">Jméno</label>
         <div class="col-sm-9">
         <div class="input-group">
             <span class="input-group-text"><span class="fas fa-user-large"></span></span>
-            <input class="form-control" id="firstname" name="firstname" type="text" value="{{ old('firstname') }}""/>
+            <input class="form-control" id="firstname" name="firstname" type="text" value="{{ old('firstname') }}"/>
         </div>
         </div>
     </div>
     
     <div class="row mb-3">
-        <label for="surname" class="col-sm-2 col-form-label text-end">Příjmení</label>
+        <label for="lastname" class="col-sm-2 col-form-label text-end">Příjmení</label>
         <div class="col-sm-9">
             <div class="input-group">
                 <span class="input-group-text"><span class="fas fa-user-large" style="width:1.2rem"></span></span>
-                <input class="form-control" id="surname" name="surname" type="text" value="{{ old('surname') }}"/>
+                <input class="form-control" id="lastname" name="lastname" type="text" value="{{ old('lastname') }}"/>
             </div>
         </div>
     </div>
 
     <div class="row mb-3">
-        <label for="pohlavi" class="col-sm-2 col-form-label text-end">Pohlaví</label>
+        <label for="gender" class="col-sm-2 col-form-label text-end">Pohlaví</label>
         <div class="col-sm-9">
             <div class="input-group">
                 <span class="input-group-text"><span class="fas fa-venus-mars" style="width:1.2rem"></span></span>
-                <select class="form-select" id="pohlavi" name="pohlavi">
+                <select class="form-select" id="gender" name="gender">
                     <option selected disabled>Vyberte</option>
-                    <option {{ old('pohlavi') == 'M' ? 'selected=selected' : '' }} value="M">Muž</option>
-                    <option {{ old('pohlavi') == 'Z' ? 'selected=selected' : '' }} value="Z">Žena</option>
+                    <option {{ old('gender') == 'M' ? 'selected=selected' : '' }} value="M">Muž</option>
+                    <option {{ old('gender') == 'Z' ? 'selected=selected' : '' }} value="Z">Žena</option>
                 </select>
             </div>
         </div>
     </div>
 
     <div class="row mb-3">
-        <label for="rok_narozeni" class="col-sm-2 col-form-label text-end">Ročník</label>
+        <label for="birthyear" class="col-sm-2 col-form-label text-end">Ročník</label>
         <div class="col-sm-9">
             <div class="input-group">
                 <span class="input-group-text"><span class="fas fa-calendar" style="width:1.2rem"></span></span>
-                <select class="form-select" id="rok_narozeni" name="rok_narozeni">
+                <select class="form-select" id="birthyear" name="birthyear">
                     <option selected disabled>Vyberte</option>
                      @for ($i = $event_age_range[0]->year_start; $i <= $event_age_range[0]->year_end ; $i++)
-                        <option {{ old('rok_narozeni') == $i ? 'selected=selected' : '' }} value="{{ $i }}">{{ $i }}</option>
+                        <option {{ old('birthyear') == $i ? 'selected=selected' : '' }} value="{{ $i }}">{{ $i }}</option>
                     @endfor
                 </select>
             </div>
@@ -48,21 +50,32 @@
     </div>
 
     <div class="row mb-3">
-        <label for="stat" class="col-sm-2 col-form-label text-end">Stát</label>
+        <label for="country" class="col-sm-2 col-form-label text-end">Stát</label>
         <div class="col-sm-9">
             <div class="input-group">
                 <span class="input-group-text"><span class="fas fa-globe" style="width:1.2rem"></span></span>
-                <select class="form-select" id="stat" name="stat">
+                <select class="form-select" id="country" name="country">
                     <option selected disabled>Vyberte</option>
                     <option value="CZE">Česká republika</option>
                     <option value="SVK">Slovenská republika</option>
                     @foreach ($countries as $country)
-                        <option {{ old('stat') == $country->code ? 'selected=selected' : '' }} value="{{ $country->code }}">{{ $country->name }}</option>
+                        <option {{ old('country') == $country->code ? 'selected=selected' : '' }} value="{{ $country->code }}">{{ $country->name }}</option>
                     @endforeach
                 </select>
             </div>
         </div>
     </div>
+
+    <div class="row mb-3">
+        <label for="team" class="col-sm-2 col-form-label text-end">Město/Obec/Tým</label>
+        <div class="col-sm-9">
+            <div class="input-group">
+                <span class="input-group-text"><span class="fas fa-house" style="width:1.2rem"></span></span>
+                <input class="form-control" id="team" name="team" type="text" value="{{ old('team') }}"/>
+            </div>
+        </div>
+    </div>
+
 
     <div class="row mb-3">
         <label for="phone1" class="col-sm-2 col-form-label text-end">Telefon</label>

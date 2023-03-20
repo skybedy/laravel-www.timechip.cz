@@ -63,7 +63,7 @@
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Registrace</a>
           <ul class="dropdown-menu">
               @foreach ($currentRegistrations as $registration)
-                  <li><a class="dropdown-item" href="{{ route('registration_long',['raceName' => StringHelper::slug($registration->nazev_zavodu),'raceYear' => $currentYear,"raceId" => $registration->id_zavodu]) }}">{{ $registration->nazev_zavodu }}</a></li>
+                  <li><a class="dropdown-item" href="{{ route('registration',['raceName' => StringHelper::slug($registration->nazev_zavodu),'raceYear' => $currentYear,'raceId' => $registration->id_zavodu]) }}">{{ $registration->nazev_zavodu }}</a></li>
               @endforeach  
           </ul>
         </li>

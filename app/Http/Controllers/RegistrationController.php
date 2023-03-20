@@ -24,7 +24,7 @@ class RegistrationController extends Controller
     
     
 
-    public function store(Request $request)
+    public function store(Request $request,$raceYear,$raceId)
     {
         
         
@@ -34,40 +34,33 @@ class RegistrationController extends Controller
         $validated = $request->validate([
             'event_order' => 'required',
             'firstname' => 'required',
-            'surname' => 'required',
-            'pohlavi' => 'required',
-            'rok_narozeni' => 'required',
-            'stat' => 'required',
+            'lastname' => 'required',
+            'gender' => 'required',
+            'birthyear' => 'required',
+            'country' => 'required',
             'phone1' => 'required',
             'email' => 'required',
         ]);
 
 
-  /*      $client = new Client();
-        $res = $client->request('POST', 'https://api.timechip.cz/prihlasky/ulozit-prihlasku/2023/9', [
-            'form_params' => [
-                'event_order' => 1,
-                'firstname' => 'test_secret',
-            ]
-        ]);*/
-       
-       
-        //echo $res->getStatusCode();
-        // 200
-        //dump($res->getHeader('content-type'));
-        // 'application/json; charset=utf8'
-        //print_r($res->getBody());
- 
 
-        $response = Http::post('https://api.timechip.cz/prihlasky/ulozit-prihlasku/2023/9', [
-            'event_order' => 1,
-            'firstname' => 'Martin',
-            'surname' => 'Kupec'
-        ]);
+        $response = Http::post('https://api.timechip.cz/prihlasky/ulozit-prihlasku/'.$raceYear.'/'.$raceId, [
+            'typ_prihlasky' => 1,
+            'event_order' => $request->event_order,
+            'firstname' => $request->firstname,
+            'surname' => $request->lastname,
+            'prislusnost' => $request->team,
+            'pohlavi' => $request->gender,
+            'rok_narozeni' => $request->birthyear,
+            'country' => $request->country,
+            'phone1' => $request->phone1,
+            'phone2' => $request->phone2,
+            'email' => $request->email,
+          ]);
 
         
 
-       dd($response);
+       dd($response->json());
 
 
 
@@ -82,7 +75,7 @@ class RegistrationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($raceYear,$raceId,RegistrationRepositoryInterface $registration,Request $request,HomeRepositoryInterface $homeRepository)
+    public function create($raceName,$raceId,RegistrationRepositoryInterface $registration,Request $request,HomeRepositoryInterface $homeRepository)
     {
         
         $request->session()->reflash();
@@ -101,7 +94,8 @@ class RegistrationController extends Controller
             'eventAgeRange' => $registration->getEventAgeRange(),
             'selects' => $x,
             'formtype' => 1,
-            'currentRegistrations' => $homeRepository->getCurrentRegistration()
+            'currentRegistrations' => $homeRepository->getCurrentRegistration(),
+            'raceName' => $raceName
         ]);
     }
 
