@@ -1,5 +1,3 @@
-<form name="add-blog-post-form" id="add-blog-post-form" method="post" action="{{ route('registration_post',['raceYear' => 2023,'raceId' => 8]) }}">
-    @csrf
     <div class="row mb-3">
         <label for="firstname" class="col-sm-2 col-form-label text-end">Jméno</label>
         <div class="col-sm-9">
@@ -27,8 +25,8 @@
                 <span class="input-group-text"><span class="fas fa-venus-mars" style="width:1.2rem"></span></span>
                 <select class="form-select" id="pohlavi" name="pohlavi">
                     <option selected disabled>Vyberte</option>
-                    <option value="M">Muž</option>
-                    <option value="Z">Žena</option>
+                    <option {{ old('pohlavi') == 'M' ? 'selected=selected' : '' }} value="M">Muž</option>
+                    <option {{ old('pohlavi') == 'Z' ? 'selected=selected' : '' }} value="Z">Žena</option>
                 </select>
             </div>
         </div>
@@ -42,7 +40,7 @@
                 <select class="form-select" id="rok_narozeni" name="rok_narozeni">
                     <option selected disabled>Vyberte</option>
                      @for ($i = $event_age_range[0]->year_start; $i <= $event_age_range[0]->year_end ; $i++)
-                        <option value="{{ $i }}">{{ $i }}</option>
+                        <option {{ old('rok_narozeni') == $i ? 'selected=selected' : '' }} value="{{ $i }}">{{ $i }}</option>
                     @endfor
                 </select>
             </div>
@@ -59,7 +57,7 @@
                     <option value="CZE">Česká republika</option>
                     <option value="SVK">Slovenská republika</option>
                     @foreach ($countries as $country)
-                        <option value="{{ $country->code }}">{{ $country->name }}</option>
+                        <option {{ old('stat') == $country->code ? 'selected=selected' : '' }} value="{{ $country->code }}">{{ $country->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -71,7 +69,7 @@
         <div class="col-sm-9">
             <div class="input-group">
                 <span class="input-group-text"><span class="fas fa-phone" style="width:1.2rem"></span></span>
-                <input class="form-control" id="phone1" name="phone1" type="tel"/>
+                <input class="form-control" id="phone1" name="phone1" type="tel" value="{{ old('phone1') }}" />
             </div>
         </div>
     </div>
@@ -81,17 +79,17 @@
         <div class="col-sm-9">
             <div class="input-group">
                 <span class="input-group-text"><span class="fas fa-phone" style="width:1.2rem"></span></span>
-                <input class="form-control" id="phone2" name="phone2" type="tel"/>
+                <input class="form-control" id="phone2" name="phone2" type="tel" value="{{ old('phone2') }}" />
             </div>
         </div>
     </div>
 
     <div class="row mb-3">
-        <label for="Email" class="col-sm-2 col-form-label text-end">Email</label>
+        <label for="email" class="col-sm-2 col-form-label text-end">Email</label>
         <div class="col-sm-9">
         <div class="input-group">
             <span class="input-group-text"><span class="fas fa-envelope" style="width:1.2rem"></span></span>
-            <input class="form-control" id="Email" name="Email" type="email"/>
+            <input class="form-control" id="email" name="email" type="email" value="{{ old('email') }}" />
         </div>
         </div>
     </div>
@@ -117,4 +115,3 @@
 
     
            <button type="submit" class="btn btn-primary ms-5">Submit</button>
-</form>

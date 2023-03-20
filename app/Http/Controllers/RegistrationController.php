@@ -8,7 +8,7 @@ use App\Interfaces\SelectRepositoryInterface;
 use App\Interfaces\RegistrationRepositoryInterface;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
-
+use Illuminate\Support\Facades\Session;
 
 class RegistrationController extends Controller
 {
@@ -26,7 +26,11 @@ class RegistrationController extends Controller
     public function store(Request $request)
     {
         
-        /*$validated = $request->validate([
+        
+        //dd($request->all());
+        
+        
+        $validated = $request->validate([
             'event_order' => 'required',
             'firstname' => 'required',
             'surname' => 'required',
@@ -35,7 +39,7 @@ class RegistrationController extends Controller
             'stat' => 'required',
             'phone1' => 'required',
             'email' => 'required',
-        ]);*/
+        ]);
 
 
   /*      $client = new Client();
@@ -77,8 +81,10 @@ class RegistrationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($raceYear,$raceId,RegistrationRepositoryInterface $registration)
+    public function create($raceYear,$raceId,RegistrationRepositoryInterface $registration,Request $request)
     {
+        
+        $request->session()->reflash();
         
         if(!isset($registration->getEventList()['current_event']))
         {

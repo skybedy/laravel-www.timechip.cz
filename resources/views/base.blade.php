@@ -60,8 +60,12 @@
             @endfor
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('registration',['raceYear' => 2023,'raceId' => 8]) }}">Registrace</a>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Registrace</a>
+          <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="neco">Nejaky zavod</a></li>
+          </ul>
         </li>
 
         <li class="nav-item">

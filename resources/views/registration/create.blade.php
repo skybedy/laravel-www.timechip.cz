@@ -21,7 +21,9 @@
         </ul>
     </div>
 @endif
-    
+  <form name="add-blog-post-form" id="add-blog-post-form" method="post" action="{{ route('registration_post',['raceYear' => 2023,'raceId' => 8]) }}">
+    @csrf
+  
   @if(count($eventList['event_list']) > 1)
       @include('registration.event_list_select',[
                                                   'eventList' => $eventList['event_list'],
@@ -33,5 +35,5 @@
   @endif
 
   @include('registration.formtypes.type_'.$eventList['current_event']->registration_form_type,['countries' => $countries,'selects' => $selects,'event_age_range' => $eventAgeRange])
-
+      </form>
 @endsection
