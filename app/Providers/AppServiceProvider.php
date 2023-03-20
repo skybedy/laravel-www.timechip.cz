@@ -30,6 +30,10 @@ use App\Repositories\RegistrationRepository;
 
 use App\Interfaces\RegistrationRepositoryInterface;
 
+use App\Repositories\HomeRepository;
+
+use App\Interfaces\HomeRepositoryInterface;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -63,6 +67,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(RaceRepositoryInterface::class, RaceRepository::class);
         $this->app->bind(TestRepositoryInterface::class, TestRepository::class);
         $this->app->bind(RegistrationRepositoryInterface::class, RegistrationRepository::class);
+        $this->app->bind(HomeRepositoryInterface::class, HomeRepository::class);
+        
 
 
 
@@ -82,6 +88,9 @@ class AppServiceProvider extends ServiceProvider
             return new RegistrationRepository([$request->route()->parameters["raceYear"],$request->route()->parameters["raceId"],$eventOrder]);
         });
 
+        $this->app->bind(HomeRepository::class, function ($app) {
+            return new HomeRepository([2023]);
+        });
                
 
 

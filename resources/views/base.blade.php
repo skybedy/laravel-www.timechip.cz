@@ -18,8 +18,6 @@
   </head>
 <body>
 
-
-
 <div class="@yield('container-type')">
 
 <nav class="navbar navbar-expand-lg">
@@ -64,7 +62,9 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Registrace</a>
           <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="neco">Nejaky zavod</a></li>
+              @foreach ($currentRegistrations as $registration)
+                  <li><a class="dropdown-item" href="{{ route('registration_long',['raceName' => StringHelper::slug($registration->nazev_zavodu),'raceYear' => $currentYear,"raceId" => $registration->id_zavodu]) }}">{{ $registration->nazev_zavodu }}</a></li>
+              @endforeach  
           </ul>
         </li>
 

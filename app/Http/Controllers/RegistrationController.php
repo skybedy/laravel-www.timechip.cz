@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Country;
 use App\Interfaces\SelectRepositoryInterface;
 use App\Interfaces\RegistrationRepositoryInterface;
+use App\Interfaces\HomeRepositoryInterface;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
@@ -81,7 +82,7 @@ class RegistrationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($raceYear,$raceId,RegistrationRepositoryInterface $registration,Request $request)
+    public function create($raceYear,$raceId,RegistrationRepositoryInterface $registration,Request $request,HomeRepositoryInterface $homeRepository)
     {
         
         $request->session()->reflash();
@@ -99,7 +100,8 @@ class RegistrationController extends Controller
             'countries' => Country::orderBy('name','asc')->get(),
             'eventAgeRange' => $registration->getEventAgeRange(),
             'selects' => $x,
-            'formtype' => 1
+            'formtype' => 1,
+            'currentRegistrations' => $homeRepository->getCurrentRegistration()
         ]);
     }
 

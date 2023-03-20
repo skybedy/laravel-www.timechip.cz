@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\zavody_2022;
+use App\Repositories\HomeRepository;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,7 @@ class HomeController extends Controller
      * @param  \Illuminat.d-none .d-sm-blocke\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke()
+    public function __invoke(HomeRepository $homeRepository)
     {
 
       $NextEventsAndLastResults =  [
@@ -28,7 +29,7 @@ class HomeController extends Controller
           ->orderBy('datum_zavodu','DESC')->limit(8)->get()
       ];
 
-      return view('home',['next_events_and_last_results' => $NextEventsAndLastResults]);
+      return view('home',['next_events_and_last_results' => $homeRepository->getNextEventsAndLastResults(),'currentRegistrations' => $homeRepository-> getCurrentRegistration()]);
       
     }
 }

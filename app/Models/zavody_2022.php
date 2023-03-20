@@ -8,7 +8,7 @@ use Carbon\Carbon;
 class zavody_2022 extends Model
 {
     
-    protected $table = 'zavody_2022';
+    protected $table = 'zavody_2023';
     
     protected $primaryKey = 'id_zavodu';
 
