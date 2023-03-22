@@ -15,20 +15,34 @@ class RegistrationController extends Controller
 {
       
     private $select;
+    private $homeRepository;
     
     
-    public function __construct(SelectRepositoryInterface $select)
+    public function __construct(SelectRepositoryInterface $select,HomeRepositoryInterface $homeRepository)
     {
         $this->select = $select;
+        $this->homeRepository = $homeRepository;
     }
     
     
-
-    public function store(Request $request,$raceYear,$raceId)
+    public function index(Request $request,$raceName,$raceYear,$raceId)
     {
         
         
-        //dd($request->all());
+        return view('registration.index',[
+            'currentRegistrations' => $this->homeRepository->getCurrentRegistration(),
+            'raceName' => $raceName,
+            'raceYear' => $raceYear,
+            'raceId' => $raceId
+
+
+        ]);
+    }
+
+
+
+    public function store(Request $request,$raceYear,$raceId)
+    {
         
         
         $validated = $request->validate([
@@ -44,7 +58,7 @@ class RegistrationController extends Controller
 
 
 
-        $response = Http::post('https://api.timechip.cz/prihlasky/ulozit-prihlasku/'.$raceYear.'/'.$raceId, [
+        $response = Http::asForm()->post('https://api.timechip.cz/prihlasky/ulozit-prihlasku/'.$raceYear.'/'.$raceId, [
             'typ_prihlasky' => 1,
             'event_order' => $request->event_order,
             'firstname' => $request->firstname,
@@ -75,7 +89,7 @@ class RegistrationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($raceName,$raceId,RegistrationRepositoryInterface $registration,Request $request,HomeRepositoryInterface $homeRepository)
+    public function create($raceName,$raceId,RegistrationRepositoryInterface $registration,Request $request)
     {
         
         $request->session()->reflash();
@@ -94,7 +108,7 @@ class RegistrationController extends Controller
             'eventAgeRange' => $registration->getEventAgeRange(),
             'selects' => $x,
             'formtype' => 1,
-            'currentRegistrations' => $homeRepository->getCurrentRegistration(),
+            'currentRegistrations' => $this->homeRepository->getCurrentRegistration(),
             'raceName' => $raceName
         ]);
     }
