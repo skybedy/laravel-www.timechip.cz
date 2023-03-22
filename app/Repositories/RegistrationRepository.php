@@ -67,7 +67,12 @@ class RegistrationRepository extends BaseRepository implements RegistrationRepos
     {
         return
 
-        DB::table($this->shortcutRegistrationIndividual)->where('id_zavodu',$this->raceId)->orderBy('prijmeni_1','ASC')->get()->toArray();
+        DB::table($this->shortcutRegistrationIndividual)
+        ->where('id_zavodu',$this->raceId)
+        ->join('nazev_k', $this->shortcutCategory.'.id_kategorie', '=', $this->shortcutRegistrationIndividual.'id_kategorie')
+
+        ->orderBy('prijmeni_1','ASC')
+        ->get()->toArray();
 
     } 
 

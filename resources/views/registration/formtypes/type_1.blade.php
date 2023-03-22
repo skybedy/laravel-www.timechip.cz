@@ -26,7 +26,7 @@
             <div class="input-group">
                 <span class="input-group-text"><span class="fas fa-venus-mars" style="width:1.2rem"></span></span>
                 <select class="form-select" id="gender" name="gender">
-                    <option selected disabled>Vyberte</option>
+                    <option selected disabled></option>
                     <option {{ old('gender') == 'M' ? 'selected=selected' : '' }} value="M">Muž</option>
                     <option {{ old('gender') == 'Z' ? 'selected=selected' : '' }} value="Z">Žena</option>
                 </select>
@@ -40,7 +40,7 @@
             <div class="input-group">
                 <span class="input-group-text"><span class="fas fa-calendar" style="width:1.2rem"></span></span>
                 <select class="form-select" id="birthyear" name="birthyear">
-                    <option selected disabled>Vyberte</option>
+                    <option selected disabled></option>
                      @for ($i = $event_age_range[0]->year_start; $i <= $event_age_range[0]->year_end ; $i++)
                         <option {{ old('birthyear') == $i ? 'selected=selected' : '' }} value="{{ $i }}">{{ $i }}</option>
                     @endfor
@@ -55,7 +55,7 @@
             <div class="input-group">
                 <span class="input-group-text"><span class="fas fa-globe" style="width:1.2rem"></span></span>
                 <select class="form-select" id="country" name="country">
-                    <option selected disabled>Vyberte</option>
+                    <option selected disabled></option>
                     <option value="CZE">Česká republika</option>
                     <option value="SVK">Slovenská republika</option>
                     @foreach ($countries as $country)

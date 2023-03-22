@@ -40,7 +40,7 @@ for($i = 1;$i <= 4;$i++)
          if($registration->poradi_podzavodu == $i)
          {
             
-            $tr .= '<tr><td>'.$registration->prijmeni_1.'</td><td>'.$registration->jmeno_1.'</td></tr>';
+            $tr .= '<tr><td>'.$registration->prijmeni_1.' '.$registration->jmeno_1.'</td><td>'.$registration->prislusnost.'</td><td>'.$registration->nazev_kategorie.'</td><td>'.$registration->zaplaceno.'</td></tr>';
             
             
             
@@ -54,8 +54,8 @@ for($i = 1;$i <= 4;$i++)
             {
 
             
-                $str .=  '<h3>'.$eventList['event_list']->firstWhere('poradi_podzavodu', $i)->nazev.'</h3>';
-                $str .= '<table>';
+                $str .=  '<h3 class="h5">'.$eventList['event_list']->firstWhere('poradi_podzavodu', $i)->nazev.'</h3>';
+                $str .= '<table class="table table-sm table-bordered table-hover table-striped mb-5">';
                 $str .= $tr;
                 $str .= '</table>';
             

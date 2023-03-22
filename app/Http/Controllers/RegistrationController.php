@@ -72,7 +72,7 @@ class RegistrationController extends Controller
             'event_order' => $this->request->event_order,
             'firstname' => $this->request->firstname,
             'surname' => $this->request->lastname,
-            'prislusnost' => $this->request->team,
+            'team' => $this->request->team,
             'pohlavi' => $this->request->gender,
             'rok_narozeni' => $this->request->birthyear,
             'country' => $this->request->country,
