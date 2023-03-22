@@ -25,6 +25,17 @@
     </div>
 </div>    
 
+@php
+print_r($registrations);
+dd($registrations);
+@endphp
+
+ @foreach ($registrations as $registration)
+    {{$registration->prijmeni_1}}
+    
+ @endforeach
+
+
 
 
 

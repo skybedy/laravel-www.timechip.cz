@@ -58,7 +58,15 @@ class RegistrationRepository extends BaseRepository implements RegistrationRepos
         {
             return $val;
         }
-
     }
+
+    public function getAll()
+    {
+        return
+
+        DB::table($this->shortcutRegistrationIndividual)->where('id_zavodu',$this->raceId)->orderBy('prijmeni_1','ASC')->get();
+
+    } 
+
 
 }

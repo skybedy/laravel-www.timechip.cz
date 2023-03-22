@@ -15,25 +15,32 @@ class RegistrationController extends Controller
 {
       
     private $select;
-    private $homeRepository;
+    private $homeRepositoryInterface;
+    private $registrationRepositoryInterface;
+    private $request;
     
     
-    public function __construct(SelectRepositoryInterface $select,HomeRepositoryInterface $homeRepository)
+    public function __construct(SelectRepositoryInterface $select,HomeRepositoryInterface $homeRepositoryInterface,RegistrationRepositoryInterface $registrationRepositoryInterface,Request $request)
     {
         $this->select = $select;
-        $this->homeRepository = $homeRepository;
+        $this->request = $request;
+        $this->homeRepositoryInterface = $homeRepositoryInterface;
+        $this->registrationRepositoryInterface = $registrationRepositoryInterface;
+
     }
+
     
     
-    public function index(Request $request,$raceName,$raceYear,$raceId)
+    public function index($raceName,$raceYear,$raceId)
     {
         
         
         return view('registration.index',[
-            'currentRegistrations' => $this->homeRepository->getCurrentRegistration(),
+            'currentRegistrations' => $this->homeRepositoryInterface->getCurrentRegistration(),
             'raceName' => $raceName,
             'raceYear' => $raceYear,
-            'raceId' => $raceId
+            'raceId' => $raceId,
+            'registrations' => $this->registrationRepositoryInterface->getAll()
 
 
         ]);
@@ -41,11 +48,11 @@ class RegistrationController extends Controller
 
 
 
-    public function store(Request $request,$raceYear,$raceId)
+    public function store($raceYear,$raceId)
     {
         
         
-        $validated = $request->validate([
+        $validated = $this->request->validate([
             'event_order' => 'required',
             'firstname' => 'required',
             'lastname' => 'required',
@@ -60,16 +67,16 @@ class RegistrationController extends Controller
 
         $response = Http::asForm()->post('https://api.timechip.cz/prihlasky/ulozit-prihlasku/'.$raceYear.'/'.$raceId, [
             'typ_prihlasky' => 1,
-            'event_order' => $request->event_order,
-            'firstname' => $request->firstname,
-            'surname' => $request->lastname,
-            'prislusnost' => $request->team,
-            'pohlavi' => $request->gender,
-            'rok_narozeni' => $request->birthyear,
-            'country' => $request->country,
-            'phone1' => $request->phone1,
-            'phone2' => $request->phone2,
-            'email' => $request->email,
+            'event_order' => $this->request->event_order,
+            'firstname' => $this->request->firstname,
+            'surname' => $this->request->lastname,
+            'prislusnost' => $this->request->team,
+            'pohlavi' => $this->request->gender,
+            'rok_narozeni' => $this->request->birthyear,
+            'country' => $this->request->country,
+            'phone1' => $this->request->phone1,
+            'phone2' => $this->request->phone2,
+            'email' => $this->request->email,
           ]);
 
         
@@ -89,10 +96,10 @@ class RegistrationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($raceName,$raceId,RegistrationRepositoryInterface $registration,Request $request)
+    public function create($raceName,$raceId,RegistrationRepositoryInterface $registration)
     {
         
-        $request->session()->reflash();
+        $this->request->session()->reflash();
         
         if(!isset($registration->getEventList()['current_event']))
         {
@@ -108,7 +115,7 @@ class RegistrationController extends Controller
             'eventAgeRange' => $registration->getEventAgeRange(),
             'selects' => $x,
             'formtype' => 1,
-            'currentRegistrations' => $this->homeRepository->getCurrentRegistration(),
+            'currentRegistrations' => $this->homeRepositoryInterface->getCurrentRegistration(),
             'raceName' => $raceName
         ]);
     }
