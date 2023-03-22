@@ -1,7 +1,7 @@
 @extends('base')
 
 @php
-    $title = 'Seznam prihlasek';
+    $title = 'Seznam registrací';
 @endphp
 
 @section('title', $title)
@@ -12,18 +12,7 @@
 
 @section('content')
 
-<div class="row mb-5">
-    <div class="col-sm-11 text-end">
-        <a class="btn  btn-outline-danger
-        {{ request()->url() == route('registration',['raceName' => $raceName, 'raceYear' => $raceYear,'raceId' => $raceId])  ? ' active' : ''}}
-        
-        " href="{{ route('registration',['raceName' => $raceName, 'raceYear' => $raceYear,'raceId' => $raceId]) }}" role="button">Přihlašovací formulář</a>
-        
-        
-        
-        <a class="btn  btn-outline-danger" href="{{ route('registration_list',['raceYear' => $raceYear,'raceId' => $raceId,'raceName' => $raceName]) }}" role="button">Seznam přihlášek</a>
-    </div>
-</div>    
+@include('registration.submenu',['raceYear' => $raceYear,'raceId' => $raceId,'raceName' => $raceName]) 
 
 @php
 
@@ -40,7 +29,7 @@ for($i = 1;$i <= 4;$i++)
          if($registration->poradi_podzavodu == $i)
          {
             
-            $tr .= '<tr><td>'.$registration->prijmeni_1.' '.$registration->jmeno_1.'</td><td>'.$registration->prislusnost.'</td><td>'.$registration->nazev_kategorie.'</td><td>'.$registration->zaplaceno.'</td></tr>';
+            $tr .= '<tr><td class="w-25 align-middle">'.$registration->prijmeni_1.' '.$registration->jmeno_1.'</td><td class="w-25  align-middle">'.$registration->prislusnost.'</td><td class="w-25  align-middle">'.$registration->nazev_kategorie.'</td><td class="w-25  align-middle text-end">'.$registration->zaplaceno.'</td></tr>';
             
             
             
@@ -55,7 +44,7 @@ for($i = 1;$i <= 4;$i++)
 
             
                 $str .=  '<h3 class="h5">'.$eventList['event_list']->firstWhere('poradi_podzavodu', $i)->nazev.'</h3>';
-                $str .= '<table class="table table-sm table-bordered table-hover table-striped mb-5">';
+                $str .= '<table class="table table-sm table-hover table-striped mb-5">';
                 $str .= $tr;
                 $str .= '</table>';
             

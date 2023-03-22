@@ -30,6 +30,17 @@ class RegistrationController extends Controller
     }
 
     
+    public function success()
+    {
+        return view('registration.success',[
+            'currentRegistrations' => $this->homeRepositoryInterface->getCurrentRegistration(),
+
+
+
+        ]);
+    }
+
+
     
     public function index($raceName,$raceYear,$raceId)
     {
@@ -83,13 +94,17 @@ class RegistrationController extends Controller
 
         
 
-       dd($response->json());
-
+       if($response['status'] == 'OK')
+        {
+            return redirect()->route('registration_success',['raceYear' => 2023,'raceId' => 8]);
+        }
 
 
 
     }
 
+
+   
 
 
 
