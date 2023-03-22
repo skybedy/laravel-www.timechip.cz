@@ -40,7 +40,9 @@ class RegistrationController extends Controller
             'raceName' => $raceName,
             'raceYear' => $raceYear,
             'raceId' => $raceId,
-            'registrations' => $this->registrationRepositoryInterface->getAll()
+            'registrations' => $this->registrationRepositoryInterface->getAll(),
+            'eventList' => $this->registrationRepositoryInterface->getEventList(),
+
 
 
         ]);

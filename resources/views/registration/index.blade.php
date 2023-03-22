@@ -26,14 +26,25 @@
 </div>    
 
 @php
-print_r($registrations);
-dd($registrations);
+//print_r($registrations);
+//dd($registrations);
+echo count($eventList);
+
 @endphp
 
- @foreach ($registrations as $registration)
-    {{$registration->prijmeni_1}}
+@for($i = 1;$i <= 4;$i++)
+
+    @foreach ($registrations as $registration)
+         @if($registration->poradi_podzavodu == $i)
+         {{$registration->prijmeni_1}}
+
+         @endif
     
- @endforeach
+    @endforeach
+
+
+@endfor 
+
 
 
 

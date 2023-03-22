@@ -52,7 +52,7 @@ class RegistrationRepository extends BaseRepository implements RegistrationRepos
 //pocet_podzavodu asi pujde pryč, nazev jeste nevim
     public function getRaceOption()
     {
-        $x =  DB::table($this->shortcutRaces)->select('pocet_podzavodu','nazev_zavodu')->where('id_zavodu',$this->raceId)->get();
+        return DB::table($this->shortcutRaces)->select('pocet_podzavodu','nazev_zavodu')->where('id_zavodu',$this->raceId)->get();
 
         foreach($x as $val)
         {
@@ -64,7 +64,7 @@ class RegistrationRepository extends BaseRepository implements RegistrationRepos
     {
         return
 
-        DB::table($this->shortcutRegistrationIndividual)->where('id_zavodu',$this->raceId)->orderBy('prijmeni_1','ASC')->get();
+        DB::table($this->shortcutRegistrationIndividual)->where('id_zavodu',$this->raceId)->orderBy('prijmeni_1','ASC')->get()->toArray();
 
     } 
 
