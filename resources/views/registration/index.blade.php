@@ -26,24 +26,48 @@
 </div>    
 
 @php
-//print_r($registrations);
-//dd($registrations);
-echo count($eventList);
 
-@endphp
 
-@for($i = 1;$i <= 4;$i++)
+$str = "";
 
-    @foreach ($registrations as $registration)
-         @if($registration->poradi_podzavodu == $i)
-         {{$registration->prijmeni_1}}
+for($i = 1;$i <= 4;$i++)
+{
 
-         @endif
+    $k = 1;
+    $tr = false;
+    foreach ($registrations as $registration)
+    {
+         if($registration->poradi_podzavodu == $i)
+         {
+            
+            $tr .= '<tr><td>'.$registration->prijmeni_1.'</td><td>'.$registration->jmeno_1.'</td></tr>';
+            
+            
+            
+         
+         }
+
     
-    @endforeach
+  
+    }
+        if($tr)
+            {
+
+            
+                $str .=  '<h3>'.$eventList['event_list']->firstWhere('poradi_podzavodu', $i)->nazev.'</h3>';
+                $str .= '<table>';
+                $str .= $tr;
+                $str .= '</table>';
+            
+                $k++;
+            
+            }
 
 
-@endfor 
+}
+
+echo $str;
+@endphp
 
 
 

@@ -11,7 +11,7 @@
            @if(($event->poradi_podzavodu == $current_event_order))
             selected
            @endif
-           >{{ $event->nazev }}</option>
+           >{{ $event->registration_name }}</option>
         @endforeach
       </select>
       </div>

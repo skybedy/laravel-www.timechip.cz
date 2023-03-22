@@ -35,11 +35,14 @@ class RegistrationRepository extends BaseRepository implements RegistrationRepos
     public function getEventList()
     {
         $eventList = DB::table($this->shortcutEvents)
-        ->select('nazev','poradi_podzavodu','registration_form_type')
+        ->select('nazev','registration_name','poradi_podzavodu','registration_form_type')
         ->where('id_zavodu',$this->raceId)
         ->whereNotNull('registration_form_type')
         ->OrderBy('poradi_podzavodu','ASC')
         ->get();
+
+
+//dd($eventList);
 
         return[
             'event_list' => $eventList,
