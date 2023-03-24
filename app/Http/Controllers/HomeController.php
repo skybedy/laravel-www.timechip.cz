@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\zavody_2022;
+use App\Models\Races;
 use App\Repositories\HomeRepository;
 
 class HomeController extends Controller
@@ -18,8 +18,8 @@ class HomeController extends Controller
     {
 
       $NextEventsAndLastResults =  [
-        zavody_2022::with('typZavodu')->whereNotNull('datum_zavodu')->where([['datum_zavodu','<',date("Y-m-d")],['zverejneni','=',1]])->orderBy('datum_zavodu','ASC')->limit(8)->get(),
-        zavody_2022::with('typZavodu')
+        Races::with('typZavodu')->whereNotNull('datum_zavodu')->where([['datum_zavodu','<',date("Y-m-d")],['zverejneni','=',1]])->orderBy('datum_zavodu','ASC')->limit(8)->get(),
+        Races::with('typZavodu')
           ->whereNotNull('datum_zavodu')
           ->whereNotNull('zverejneni')
           ->whereNotNull('nove_vysledky')
