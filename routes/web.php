@@ -29,6 +29,8 @@ Route::get('vysledky/{raceYear}', [ResultsController::class, 'index']);
 Route::get('vysledky/{raceYear}/{raceId}', [ResultsController::class, 'show']);
 
 
+Route::get('registrace/{raceYear}/{raceId}/success', [RegistrationController::class, 'success'])->name('registration_success');
+
 Route::get('registrace/{raceName}/seznam-prihlasek/{raceYear}/{raceId}', [RegistrationController::class, 'index'])->name('registration_list');
 Route::get('registrace/{raceName}/{raceYear}/{raceId}/{eventOrder?}', [RegistrationController::class, 'create'])->name('registration');
 

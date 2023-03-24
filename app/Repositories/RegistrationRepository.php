@@ -57,24 +57,24 @@ class RegistrationRepository extends BaseRepository implements RegistrationRepos
     {
         return DB::table($this->shortcutRaces)->select('pocet_podzavodu','nazev_zavodu')->where('id_zavodu',$this->raceId)->get();
 
-        foreach($x as $val)
-        {
-            return $val;
-        }
+       
     }
 
     public function getAll()
     {
-        return
-
-        DB::table($this->shortcutRegistrationIndividual)
-        ->where('id_zavodu',$this->raceId)
-        ->join('nazev_k', $this->shortcutCategory.'.id_kategorie', '=', $this->shortcutRegistrationIndividual.'id_kategorie')
-
-        ->orderBy('prijmeni_1','ASC')
-        ->get()->toArray();
-
+        return DB::table($this->shortcutRegistrationIndividual)
+                ->select(
+                    $this->shortcutRegistrationIndividual.'.prijmeni_1',
+                    $this->shortcutRegistrationIndividual.'.jmeno_1',
+                    $this->shortcutRegistrationIndividual.'.prislusnost',
+                    $this->shortcutRegistrationIndividual.'.poradi_podzavodu',
+                    $this->shortcutRegistrationIndividual.'.zaplaceno',
+                    $this->shortcutCategory.'.nazev_k AS nazev_kategorie'
+                )
+                ->where($this->shortcutRegistrationIndividual.'.id_zavodu',$this->raceId)
+                ->join($this->shortcutCategory,$this->shortcutRegistrationIndividual.'.id_kategorie', '=', $this->shortcutCategory.'.id_kategorie')
+                ->orderBy('prijmeni_1','ASC')
+                ->get()->toArray();
     } 
-
 
 }
