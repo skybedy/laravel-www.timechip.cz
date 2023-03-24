@@ -10,6 +10,7 @@ class HomeRepository extends BaseRepository implements HomeRepositoryInterface
 {
     
     private $raceYear;
+    private $homepageRaceNumber = 6;    
 
     public function __construct($attributes)
     {
@@ -27,39 +28,38 @@ class HomeRepository extends BaseRepository implements HomeRepositoryInterface
                 ->orderBy('nazev_zavodu','ASC')
                 ->get();
     } 
-    
+
+  
     
     
     
     public function getNextEventsAndLastResults()
     {
       
-      $lastResults =  Races::with('typZavodu')
-      ->whereNotNull('datum_zavodu')
-      ->whereNotNull('zverejneni')
-      ->whereNotNull('nove_vysledky')
-      ->where([
-        ['datum_zavodu','<',date("Y-m-d")],
-        ])
-      ->orderBy('datum_zavodu','DESC')->limit(6)->get();
-
-
-      dd($lastResults);
+      $nextRaces = Races::with('typZavodu')->whereNotNull('datum_zavodu')->where([['datum_zavodu','>',date("Y-m-d")],['zverejneni','=',1]])->orderBy('datum_zavodu','ASC')->limit(6)->get();
+      $lastResults =  Races::with('typZavodu')->whereNotNull('datum_zavodu')->whereNotNull('zverejneni')->whereNotNull('nove_vysledky')->where([['datum_zavodu','<',date("Y-m-d")],])->orderBy('datum_zavodu','DESC')->limit(6)->get();
       
-      
+      if($lastResults->count() < $this->homepageRaceNumber)
+      {
+       
+        Races::setGlobalTable('zavody_2022');
+
+        $lastYearResults  =  Races::with('typZavodu')
+        ->whereNotNull('datum_zavodu')
+        ->whereNotNull('zverejneni')
+        ->whereNotNull('nove_vysledky')
+        ->where([
+          ['datum_zavodu','<',date("Y-m-d")],
+          ])
+        ->orderBy('datum_zavodu','DESC')->limit($this->homepageRaceNumber - $lastResults->count())->get();
+  
+        $mergeResult = $lastResults->merge($lastYearResults);
+      }
+
         return [
-            Races::with('typZavodu')->whereNotNull('datum_zavodu')->where([['datum_zavodu','>',date("Y-m-d")],['zverejneni','=',1]])->orderBy('datum_zavodu','ASC')->limit(6)->get(),
-            Races::with('typZavodu')
-              ->whereNotNull('datum_zavodu')
-              ->whereNotNull('zverejneni')
-              ->whereNotNull('nove_vysledky')
-              ->where([
-                ['datum_zavodu','<',date("Y-m-d")],
-                ])
-              ->orderBy('datum_zavodu','DESC')->limit(6)->get()
+            $nextRaces,
+            $mergeResult
         ];
     }
-
-
 
 }

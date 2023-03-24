@@ -47,6 +47,11 @@
                                 <img src="./img/grafika.jpg" />
                             </div>
                         </div>
+                        <div class="img-thumbnail homepage-imagewrapper">
+                    <img src="img/tag-heuer-logo.png" class="img-flui" alt="...">
+                    <img src="img/j-chip-logo.jpeg" class="img-flui" alt="...">
+                       
+                        </div>
                     </div>
                     
                     <div class="col-lg-3 mb-3">
