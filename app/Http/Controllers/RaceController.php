@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Zavody;
 use App\Interfaces\RaceRepositoryInterface;
+use App\Interfaces\HomeRepositoryInterface;
 
 class RaceController extends Controller
 {
@@ -12,9 +12,13 @@ class RaceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(RaceRepositoryInterface $race)
+    public function index(RaceRepositoryInterface $race,HomeRepositoryInterface $homeRepositoryInterface)
     {
-        return view('zavody',['races' => $race->getRacesOfYear(),'raceYear' => $race->getRaceYear()]);
+        return view('zavody',[
+            'races' => $race->getRacesOfYear(),
+            'raceYear' => $race->getRaceYear(),
+            'currentRegistrations' => $homeRepositoryInterface->getCurrentRegistration(),
+        ]);
     }
 
 

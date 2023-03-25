@@ -25,8 +25,9 @@ use App\Http\Controllers\TestController;
 Route::get('/', HomeController::class)->name('index');
 
 Route::get('zavody/{raceYear}', [RaceController::class, 'index'])->name('race');
+
 Route::get('vysledky/{raceYear}', [ResultsController::class, 'index']);
-Route::get('vysledky/{raceYear}/{raceId}', [ResultsController::class, 'show']);
+//Route::get('vysledky/{raceYear}/{raceId}', [ResultsController::class, 'show']);
 
 
 Route::get('registrace/{raceYear}/{raceId}/success', [RegistrationController::class, 'success'])->name('registration_success');

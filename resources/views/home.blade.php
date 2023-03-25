@@ -9,7 +9,7 @@
 @section('content')
 
 <div class="row heading">
-            <div class="col-xs-12">
+            <div style="display:none" class="col-xs-12">
                 <h2>Co se děje u nás...</h2>
             </div>
         </div>

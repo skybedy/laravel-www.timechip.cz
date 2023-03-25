@@ -12,11 +12,13 @@ class ResultsController extends Controller
     
     
     
-    public function index(Results $results,$raceYear): View
+    public function index($raceYear)
     {
-        $resultList =  $results->Results($raceYear);
+        //$resultList =  $results->Results($raceYear);
         
-        return view('results.index',['raceYear' => $raceYear,'resultList' => $resultList]);
+        //return view('results.index',['raceYear' => $raceYear,'resultList' => $resultList]);
+
+        return redirect('https://vysledky.timechip.cz#'.$raceYear);
     }
 
 

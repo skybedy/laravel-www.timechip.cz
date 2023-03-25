@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\ContactRequest;
 use App\Mail\ContactMessage;
 use Illuminate\Http\RedirectResponse;
+use App\Interfaces\HomeRepositoryInterface;
 
 use Illuminate\Http\Request;
 
@@ -17,11 +18,13 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(): View
+    public function show(HomeRepositoryInterface $homeRepositoryInterface): View
     {
        // echo "kokok";
         
-        return view('contact.show');
+        return view('contact.show',[
+            'currentRegistrations' => $homeRepositoryInterface->getCurrentRegistration(),
+        ]);
     }
 
     public function send(ContactRequest $request): RedirectResponse
