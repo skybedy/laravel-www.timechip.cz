@@ -30,9 +30,6 @@ class HomeRepository extends BaseRepository implements HomeRepositoryInterface
     } 
 
   
-    
-    
-    
     public function getNextEventsAndLastResults()
     {
       
