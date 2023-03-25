@@ -10,7 +10,7 @@ class HomeRepository extends BaseRepository implements HomeRepositoryInterface
 {
     
     private $raceYear;
-    private $homepageRaceNumber = 6;    
+    private $homepageRaceNumber = 7;    
 
     public function __construct($attributes)
     {

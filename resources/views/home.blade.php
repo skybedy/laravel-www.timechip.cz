@@ -42,15 +42,16 @@
                     
                     
                     <div class="col-lg-6 d-none d-lg-block">
-                        <div class="img-thumbnail homepage-imagewrapper">
+                        <div class="img-thumbnail homepage-imagewrapper mb-3">
                             <div class="img-thumbnail p-0">
-                                <img src="./img/grafika.jpg" />
+                                <img src="/img/grafika.jpg" />
                             </div>
                         </div>
+                        
                         <div class="img-thumbnail homepage-imagewrapper">
-                    <img src="img/tag-heuer-logo.png" class="img-flui" alt="...">
-                    <img src="img/j-chip-logo.jpeg" class="img-flui" alt="...">
-                       
+                          <div class="img-thumbnail p-2">
+                                <img src="/img/partners.jpg" height="195" width="523" />
+                            </div>
                         </div>
                     </div>
                     
@@ -78,29 +79,6 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-lg-3 mb-3">
-                <div class="img-thumbnail">
-                    <img src="img/tag-heuer-logo.png" class="img-fluid" alt="...">
-                </div>
-            </div>
-            <div class="col-lg-3 mb-3">
-                <div class="img-thumbnail">
-                    <img src="img/j-chip-logo.jpeg" class="img-fluid" alt="...">
-                </div>
-            </div>
-            <div class="col-lg-3 mb-3">
-                <div class="img-thumbnail">
-                    <img src="img/rfidtiming-logo.png" class="img-fluid" alt="...">
-                </div>
-            </div>
-            <div class="col-lg-3 mb-3">
-                <div class="img-thumbnail">
-                    <img src="img/j-chip-logo.jpeg" class="img-fluid" alt="...">
-                </div>
-            </div>
-
-        </div>
 
 
 
