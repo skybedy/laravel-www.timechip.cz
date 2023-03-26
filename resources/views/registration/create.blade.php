@@ -23,38 +23,19 @@
 @endif
 
 
-<div class="row mb-5">
-    <div class="col-sm-11 text-end">
-        <a class="btn  btn-outline-danger
-        {{ request()->url() == route('registration',['raceName' => $raceName, 'raceYear' => $eventList['race_year'],'raceId' => $eventList['race_id']])  ? ' active' : ''}}
-        
-        " href="{{ route('registration',['raceName' => $raceName, 'raceYear' => $eventList['race_year'],'raceId' => $eventList['race_id']]) }}" role="button">Přihlašovací formulář</a>
-        <a class="btn  btn-outline-danger" href="{{ route('registration_list',['raceName' => $raceName, 'raceYear' => $eventList['race_year'],'raceId' => $eventList['race_id']]) }}" role="button">Seznam přihlášek</a>
-    </div>
-</div>    
-
-
-
-
-
-  <form name="model" id="add-blog-post-form" method="post" action="{{ route('registration_post',['raceYear' => 2023,'raceId' => 8]) }}">
+@include('registration.submenu',['raceYear' => $raceYear,'raceId' => $raceId,'raceName' => $raceName]) 
+  <form name="model" id="add-blog-post-form" method="post" action="{{ route('registration_post',['raceName' => $raceName,'raceYear' => $raceYear,'raceId' => $raceId]) }}">
     @csrf
-  
- 
-
     @if(count($eventList['event_list']) > 1)
-      @include('registration.event_list_select',[
+        @include('registration.event_list_select',[
                                                   'eventList' => $eventList['event_list'],
-                                                  'race_year' => $eventList['race_year'],
-                                                  'race_id' => $eventList['race_id'],
                                                   'current_event_order' => $eventList['current_event']->poradi_podzavodu,
-                                                  'race_name' => $raceName
+                                                  'race_name' => $raceName,
+                                                  'race_year' => $raceYear,
+                                                  'race_id' => $raceId,
+
                                                 ])
-                                                  
-  @endif
-
-  @include('registration.formtypes.type_'.$eventList['current_event']->registration_form_type,['countries' => $countries,'selects' => $selects,'event_age_range' => $eventAgeRange])
-      
-
+        @endif
+    @include('registration.formtypes.type_'.$eventList['current_event']->registration_form_type,['countries' => $countries,'selects' => $selects,'event_age_range' => $eventAgeRange])
 </form>
 @endsection

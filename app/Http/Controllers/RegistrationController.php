@@ -30,13 +30,13 @@ class RegistrationController extends Controller
     }
 
     
-    public function success()
+    public function success($raceName,$raceYear,$raceId)
     {
         return view('registration.success',[
             'currentRegistrations' => $this->homeRepositoryInterface->getCurrentRegistration(),
-
-
-
+            'raceYear' => $raceYear,
+            'raceId' => $raceId,
+            'raceName' => $raceName
         ]);
     }
 
@@ -44,8 +44,6 @@ class RegistrationController extends Controller
     
     public function index($raceName,$raceYear,$raceId)
     {
-        
-        
         return view('registration.index',[
             'currentRegistrations' => $this->homeRepositoryInterface->getCurrentRegistration(),
             'raceName' => $raceName,
@@ -53,18 +51,13 @@ class RegistrationController extends Controller
             'raceId' => $raceId,
             'registrations' => $this->registrationRepositoryInterface->getAll(),
             'eventList' => $this->registrationRepositoryInterface->getEventList(),
-
-
-
         ]);
     }
 
 
 
-    public function store($raceYear,$raceId)
+    public function store($raceName,$raceYear,$raceId)
     {
-        
-        
         $validated = $this->request->validate([
             'event_order' => 'required',
             'firstname' => 'required',
@@ -96,15 +89,10 @@ class RegistrationController extends Controller
 
        if($response['status'] == 'OK')
         {
-            return redirect()->route('registration_success',['raceYear' => 2023,'raceId' => 8]);
+            return redirect()->route('registration_success',['raceName' => $raceName,'raceYear' => $raceYear,'raceId' => $raceId]);
         }
 
-
-
     }
-
-
-   
 
 
 
@@ -113,7 +101,7 @@ class RegistrationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($raceName,$raceId,RegistrationRepositoryInterface $registration)
+    public function create($raceName,$raceYear,$raceId,RegistrationRepositoryInterface $registration)
     {
         
         $this->request->session()->reflash();
@@ -125,7 +113,6 @@ class RegistrationController extends Controller
 
         $x = $this->select->getTest($raceId);
      
-
         return view('registration.create',[
             'eventList' => $registration->getEventList(),
             'countries' => Country::orderBy('name','asc')->get(),
@@ -133,7 +120,10 @@ class RegistrationController extends Controller
             'selects' => $x,
             'formtype' => 1,
             'currentRegistrations' => $this->homeRepositoryInterface->getCurrentRegistration(),
-            'raceName' => $raceName
+            'raceName' => $raceName,
+            'raceYear' => $raceYear,
+            'raceId' => $raceId
+
         ]);
     }
 
