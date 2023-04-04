@@ -73,6 +73,7 @@ class RegistrationRepository extends BaseRepository implements RegistrationRepos
                 )
                 ->where($this->shortcutRegistrationIndividual.'.id_zavodu',$this->raceId)
                 ->join($this->shortcutCategory,$this->shortcutRegistrationIndividual.'.id_kategorie', '=', $this->shortcutCategory.'.id_kategorie')
+                ->orderBy('zaplaceno','ASC')
                 ->orderBy('prijmeni_1','ASC')
                 ->get()->toArray();
     } 
