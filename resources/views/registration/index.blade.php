@@ -31,9 +31,6 @@ for($i = 1;$i <= 4;$i++)
             
             $tr .= '<tr><td class="w-25 align-middle">'.$registration->prijmeni_1.' '.$registration->jmeno_1.'</td><td class="w-25  align-middle">'.$registration->prislusnost.'</td><td class="w-25  align-middle">'.$registration->nazev_kategorie.'</td><td class="w-25  align-middle text-end">'.$registration->zaplaceno.'</td></tr>';
             
-            
-            
-         
          }
 
     

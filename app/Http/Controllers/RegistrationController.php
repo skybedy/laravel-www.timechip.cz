@@ -56,8 +56,29 @@ class RegistrationController extends Controller
 
 
 
+    private function storeType1()
+    {
+        dd($this->request);
+    }
+
+    private function storeType3()
+    {
+        dd($this->request);
+    }
+
+    
+    
     public function store($raceName,$raceYear,$raceId)
     {
+        
+        $fun = 'storeType'.$this->request->registration_type;
+        //dd($fun);
+
+        
+        
+        
+        
+        
         $validated = $this->request->validate([
             'event_order' => 'required',
             'firstname' => 'required',
@@ -72,7 +93,7 @@ class RegistrationController extends Controller
 
 
         $response = Http::asForm()->post('https://api.timechip.cz/prihlasky/ulozit-prihlasku/'.$raceYear.'/'.$raceId, [
-            'typ_prihlasky' => 1,
+            'typ_prihlasky' => $this->request->registration_type,
             'event_order' => $this->request->event_order,
             'firstname' => $this->request->firstname,
             'surname' => $this->request->lastname,
@@ -118,7 +139,7 @@ class RegistrationController extends Controller
             'countries' => Country::orderBy('name','asc')->get(),
             'eventAgeRange' => $registration->getEventAgeRange(),
             'selects' => $x,
-            'formtype' => 1,
+           // 'formtype' => 50,
             'currentRegistrations' => $this->homeRepositoryInterface->getCurrentRegistration(),
             'raceName' => $raceName,
             'raceYear' => $raceYear,

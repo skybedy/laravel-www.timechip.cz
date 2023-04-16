@@ -10,6 +10,8 @@
 
 @section('container-type',"container")
 
+
+
 @section('content')
 
 @if ($errors->any())
@@ -23,7 +25,10 @@
 @endif
 
 
+
+
 @include('registration.submenu',['raceYear' => $raceYear,'raceId' => $raceId,'raceName' => $raceName]) 
+  
   <form name="model" id="add-blog-post-form" method="post" action="{{ route('registration_post',['raceName' => $raceName,'raceYear' => $raceYear,'raceId' => $raceId]) }}">
     @csrf
     @if(count($eventList['event_list']) > 1)
@@ -33,9 +38,11 @@
                                                   'race_name' => $raceName,
                                                   'race_year' => $raceYear,
                                                   'race_id' => $raceId,
-
                                                 ])
-        @endif
+    @endif
+    
     @include('registration.formtypes.type_'.$eventList['current_event']->registration_form_type,['countries' => $countries,'selects' => $selects,'event_age_range' => $eventAgeRange])
+
 </form>
+
 @endsection
