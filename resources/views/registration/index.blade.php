@@ -28,28 +28,16 @@ for($i = 1;$i <= 4;$i++)
     {
          if($registration->poradi_podzavodu == $i)
          {
-            
             $tr .= '<tr><td class="w-25 align-middle">'.$registration->prijmeni_1.' '.$registration->jmeno_1.'</td><td class="w-25  align-middle">'.$registration->prislusnost.'</td><td class="w-25  align-middle">'.$registration->nazev_kategorie.'</td><td class="w-25  align-middle text-end">'.$registration->zaplaceno.'</td></tr>';
-            
-            
-            
-         
          }
-
-    
-  
     }
         if($tr)
             {
-
-            
                 $str .=  '<h3 class="h5">'.$eventList['event_list']->firstWhere('poradi_podzavodu', $i)->nazev.'</h3>';
                 $str .= '<table class="table table-sm table-hover table-striped mb-5">';
                 $str .= $tr;
                 $str .= '</table>';
-            
                 $k++;
-            
             }
 
 
@@ -57,10 +45,4 @@ for($i = 1;$i <= 4;$i++)
 
 echo $str;
 @endphp
-
-
-
-
-
-
 @endsection
