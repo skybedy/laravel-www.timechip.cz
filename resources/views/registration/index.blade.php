@@ -29,6 +29,10 @@ for($i = 1;$i <= 4;$i++)
          if($registration->poradi_podzavodu == $i)
          {
             $tr .= '<tr><td class="w-25 align-middle">'.$registration->prijmeni_1.' '.$registration->jmeno_1.'</td><td class="w-25  align-middle">'.$registration->prislusnost.'</td><td class="w-25  align-middle">'.$registration->nazev_kategorie.'</td><td class="w-25  align-middle text-end">'.$registration->zaplaceno.'</td></tr>';
+<<<<<<< HEAD
+=======
+            
+>>>>>>> 5bd80ff6c912680e210fe77118745e22f6fa6539
          }
     }
         if($tr)

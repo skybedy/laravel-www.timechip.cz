@@ -10,6 +10,8 @@
 
 @section('container-type',"container")
 
+
+
 @section('content')
 
 @if ($errors->any())
@@ -23,10 +25,16 @@
 @endif
 
 
+
+
 @include('registration.submenu',['raceYear' => $raceYear,'raceId' => $raceId,'raceName' => $raceName]) 
+<<<<<<< HEAD
 
 
 @if($raceId != 8) 
+=======
+  
+>>>>>>> 5bd80ff6c912680e210fe77118745e22f6fa6539
   <form name="model" id="add-blog-post-form" method="post" action="{{ route('registration_post',['raceName' => $raceName,'raceYear' => $raceYear,'raceId' => $raceId]) }}">
     @csrf
     @if(count($eventList['event_list']) > 1)
@@ -36,15 +44,20 @@
                                                   'race_name' => $raceName,
                                                   'race_year' => $raceYear,
                                                   'race_id' => $raceId,
-
                                                 ])
-        @endif
+    @endif
+    
     @include('registration.formtypes.type_'.$eventList['current_event']->registration_form_type,['countries' => $countries,'selects' => $selects,'event_age_range' => $eventAgeRange])
+
 </form>
+<<<<<<< HEAD
 @else
 <div class="alert alert-danger" role="alert">
   Registrace online byla ukončena, na závod je ale možné se přihlásit v den závodu a v místě jeho konání.
 </div>
     
 @endif
+=======
+
+>>>>>>> 5bd80ff6c912680e210fe77118745e22f6fa6539
 @endsection
