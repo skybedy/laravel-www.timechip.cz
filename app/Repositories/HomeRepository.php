@@ -33,9 +33,12 @@ class HomeRepository extends BaseRepository implements HomeRepositoryInterface
     public function getNextEventsAndLastResults()
     {
       
+      
+      //$mergeResult = false;
       $nextRaces = Races::with('typZavodu')->whereNotNull('datum_zavodu')->where([['datum_zavodu','>',date("Y-m-d")],['zverejneni','=',1]])->orderBy('datum_zavodu','ASC')->limit($this->homepageRaceNumber)->get();
       $lastResults =  Races::with('typZavodu')->whereNotNull('datum_zavodu')->whereNotNull('zverejneni')->whereNotNull('nove_vysledky')->where([['datum_zavodu','<',date("Y-m-d")],])->orderBy('datum_zavodu','DESC')->limit($this->homepageRaceNumber)->get();
-      
+      $mergeResult = $lastResults;
+    
       if($lastResults->count() < $this->homepageRaceNumber)
       {
        
