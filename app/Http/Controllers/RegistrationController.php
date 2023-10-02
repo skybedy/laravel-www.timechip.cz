@@ -10,6 +10,7 @@ use App\Interfaces\HomeRepositoryInterface;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\RegistrationRequest;
 
 class RegistrationController extends Controller
 {
@@ -68,7 +69,7 @@ class RegistrationController extends Controller
 
     
     
-    public function store($raceName,$raceYear,$raceId)
+    public function store(RegistrationRequest $request,$raceName,$raceYear,$raceId)
     {
         
         $fun = 'storeType'.$this->request->registration_type;
@@ -91,19 +92,22 @@ class RegistrationController extends Controller
         ]);
 
 
+        
+
+
 
         $response = Http::asForm()->post('https://api.timechip.cz/prihlasky/ulozit-prihlasku/'.$raceYear.'/'.$raceId, [
-            'typ_prihlasky' => $this->request->registration_type,
-            'event_order' => $this->request->event_order,
-            'firstname' => $this->request->firstname,
-            'surname' => $this->request->lastname,
-            'team' => $this->request->team,
-            'pohlavi' => $this->request->gender,
-            'rok_narozeni' => $this->request->birthyear,
-            'country' => $this->request->country,
-            'phone1' => $this->request->phone1,
-            'phone2' => $this->request->phone2,
-            'email' => $this->request->email,
+            'typ_prihlasky' => $request->registration_type,
+            'event_order' => $request->event_order,
+            'firstname' => $request->firstname,
+            'surname' => $request->lastname,
+            'team' => $request->team,
+            'pohlavi' => $request->gender,
+            'rok_narozeni' => $request->birthyear,
+            'country' => $request->country,
+            'phone1' => $request->phone1,
+            'phone2' => $request->phone2,
+            'email' => $request->email,
           ]);
 
         
