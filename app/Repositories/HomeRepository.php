@@ -23,7 +23,7 @@ class HomeRepository extends BaseRepository implements HomeRepositoryInterface
     public function getCurrentRegistration()
     {
         return DB::table($this->shortcutRaces)
-                ->select('id_zavodu','nazev_zavodu')
+                ->select('id_zavodu','nazev_zavodu','nove_prihlasky')
                 ->whereNotNull('nove_prihlasky')
                 ->orderBy('nazev_zavodu','ASC')
                 ->get();
@@ -36,9 +36,9 @@ class HomeRepository extends BaseRepository implements HomeRepositoryInterface
       
       //$mergeResult = false;
       $nextRaces = Races::with('typZavodu')->whereNotNull('datum_zavodu')->where([['datum_zavodu','>',date("Y-m-d")],['zverejneni','=',1]])->orderBy('datum_zavodu','ASC')->limit($this->homepageRaceNumber)->get();
-      $lastResults =  Races::with('typZavodu')->whereNotNull('datum_zavodu')->whereNotNull('zverejneni')->whereNotNull('nove_vysledky')->where([['datum_zavodu','<',date("Y-m-d")],])->orderBy('datum_zavodu','DESC')->limit($this->homepageRaceNumber)->get();
-      $mergeResult = $lastResults;
-    
+      $lastResults =  Races::with('typZavodu')->whereNotNull('datum_zavodu')->whereNotNull('zverejneni')->whereNotNull('nove_vysledky')->where([['datum_zavodu','<=',date("Y-m-d")],])->orderBy('datum_zavodu','DESC')->limit($this->homepageRaceNumber)->get();
+      $mergeResult = $lastResults; 
+     
       if($lastResults->count() < $this->homepageRaceNumber)
       {
        

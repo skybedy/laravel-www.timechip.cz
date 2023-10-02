@@ -27,10 +27,24 @@ class RegistrationController extends Controller
         $this->request = $request;
         $this->homeRepositoryInterface = $homeRepositoryInterface;
         $this->registrationRepositoryInterface = $registrationRepositoryInterface;
-
     }
 
-    
+ 
+    public function index($raceName,$raceYear,$raceId)
+    {
+        return view('registration.index',[
+            'currentRegistrations' => $this->homeRepositoryInterface->getCurrentRegistration(),
+            'raceName' => $raceName,
+            'raceYear' => $raceYear,
+            'raceId' => $raceId,
+            'registrations' => $this->registrationRepositoryInterface->getAll(),
+            'eventList' => $this->registrationRepositoryInterface->getEventList(),
+        ]);
+    }
+
+
+
+
     public function success($raceName,$raceYear,$raceId)
     {
         return view('registration.success',[
@@ -43,17 +57,6 @@ class RegistrationController extends Controller
 
 
     
-    public function index($raceName,$raceYear,$raceId)
-    {
-        return view('registration.index',[
-            'currentRegistrations' => $this->homeRepositoryInterface->getCurrentRegistration(),
-            'raceName' => $raceName,
-            'raceYear' => $raceYear,
-            'raceId' => $raceId,
-            'registrations' => $this->registrationRepositoryInterface->getAll(),
-            'eventList' => $this->registrationRepositoryInterface->getEventList(),
-        ]);
-    }
 
 
 
