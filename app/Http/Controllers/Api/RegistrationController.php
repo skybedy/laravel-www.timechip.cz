@@ -25,6 +25,7 @@ class RegistrationController extends Controller
         return DB::table('ids_endurocc')
         ->select('ids')
         ->where('id_kategorie','=',$category_id)
+        ->where('volne','=',1)
         ->orderBy('ids','ASC')->get()->toJson();
 
     }
