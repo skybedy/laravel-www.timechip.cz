@@ -42,7 +42,7 @@ class HomeRepository extends BaseRepository implements HomeRepositoryInterface
       if($lastResults->count() < $this->homepageRaceNumber)
       {
        
-        Races::setGlobalTable('zavody_2022');
+        Races::setGlobalTable('zavody_2023');
 
         $lastYearResults  =  Races::with('typZavodu')
         ->whereNotNull('datum_zavodu')

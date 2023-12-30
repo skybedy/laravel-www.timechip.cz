@@ -1,10 +1,6 @@
 @extends('base')
 
-@php
-    $title = 'Výsledky '.$raceYear;
-@endphp
-
-@section('title', $title)
+@section('title', ' | Hlavní strana')
 
 @section('h1', $title)
 

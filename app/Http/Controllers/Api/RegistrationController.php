@@ -26,7 +26,7 @@ class RegistrationController extends Controller
         ->select('ids')
         ->where('id_kategorie','=',$category_id)
         ->where('volne','=',1)
-        ->orderBy('ids','ASC')->get()->toJson();
+        ->orderBy('ids','ASC')->get();
 
     }
 

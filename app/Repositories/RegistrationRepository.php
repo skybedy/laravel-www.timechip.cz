@@ -55,8 +55,7 @@ class RegistrationRepository extends BaseRepository implements RegistrationRepos
 //pocet_podzavodu asi pujde pryč, nazev jeste nevim
     public function getRaceOption()
     {
-<<<<<<< HEAD
->>>>>>> 5bd80ff6c912680e210fe77118745e22f6fa6539
+        return DB::table($this->shortcutRaces)->select('pocet_podzavodu','nazev_zavodu','nove_prihlasky')->where('id_zavodu',$this->raceId)->get();
     }
 
     public function getAll()
