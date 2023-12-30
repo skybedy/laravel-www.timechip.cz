@@ -31,9 +31,6 @@
 <<<<<<< HEAD
 
 
-@if($raceId != 8) 
-=======
-  
 >>>>>>> 5bd80ff6c912680e210fe77118745e22f6fa6539
   <form name="model" id="add-blog-post-form" method="post" action="{{ route('registration_post',['raceName' => $raceName,'raceYear' => $raceYear,'raceId' => $raceId]) }}">
     @csrf
