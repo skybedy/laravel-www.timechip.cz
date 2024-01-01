@@ -14,7 +14,7 @@ class HomeRepository extends BaseRepository implements HomeRepositoryInterface
 
     public function __construct($attributes)
     {
-        $this->raceYear = $attributes[0];
+        $this->raceYear = 2024;
         parent::__construct($this->raceYear);
     }
 
@@ -23,6 +23,7 @@ class HomeRepository extends BaseRepository implements HomeRepositoryInterface
     public function getCurrentRegistration()
     {
         return DB::table($this->shortcutRaces)
+        //return DB::table('zavody_2024')
                 ->select('id_zavodu','nazev_zavodu','nove_prihlasky')
                 ->whereNotNull('nove_prihlasky')
                 ->orderBy('nazev_zavodu','ASC')

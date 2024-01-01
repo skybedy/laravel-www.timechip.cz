@@ -15,9 +15,9 @@ class RegistrationRepository extends BaseRepository implements RegistrationRepos
 
     public function __construct($attributes)
     {
-        $this->raceYear = $attributes[0];
-        $this->raceId = $attributes[1];
-        $this->eventOrder = $attributes[2];
+        $this->raceYear = 2024;
+        $this->raceId = 2;
+        $this->eventOrder = 1;
         parent::__construct($this->raceYear);
     }
 

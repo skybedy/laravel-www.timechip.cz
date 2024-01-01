@@ -74,7 +74,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(TestRepository::class, function ($app) {
             $request = $this->app->request;
-            return new TestRepository(2023);
+            return new TestRepository(2024);
         });
 
         $this->app->bind(RaceRepository::class, function ($app) {
@@ -89,7 +89,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->app->bind(HomeRepository::class, function ($app) {
-            return new HomeRepository([2023]);
+            return new HomeRepository([2024]);
         });
                
 

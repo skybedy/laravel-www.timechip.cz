@@ -33,7 +33,7 @@
 @if($raceId != 8) 
   <form name="model" id="add-blog-post-form" method="post" action="{{ route('registration_post',['raceName' => $raceName,'raceYear' => $raceYear,'raceId' => $raceId]) }}">
     @csrf
-    @if(count($eventList['event_list']) > 1)
+    @if(count($eventList['event_list']) > 0)
         @include('registration.event_list_select',[
                                                   'eventList' => $eventList['event_list'],
                                                   'current_event_order' => $eventList['current_event']->poradi_podzavodu,

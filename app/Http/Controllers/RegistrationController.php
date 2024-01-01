@@ -124,15 +124,11 @@ class RegistrationController extends Controller
 
 
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create($raceName,$raceYear,$raceId,RegistrationRepositoryInterface $registration)
     {
         
         $this->request->session()->reflash();
+        //dd($registration->getEventList());
         
         if(!isset($registration->getEventList()['current_event']))
         {
@@ -140,6 +136,8 @@ class RegistrationController extends Controller
         }
 
         $x = $this->select->getTest($raceId);
+      //  dd($this->homeRepositoryInterface->getCurrentRegistration());
+      //dd($registration->getEventList());
      
         return view('registration.create',[
             'eventList' => $registration->getEventList(),
