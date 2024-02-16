@@ -20,6 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+Route::get('/users', 'UserController@index');
+
+
+
 Route::get('start-number-check', [RegistrationController::class, 'startNumberCheck'])->name('start_number_check');
 
 Route::get('start-number-choice-endurocc/{category_id}', [RegistrationController::class, 'startNumberChoiceEnduroCC'])->name('start_number_choice_endurocc');
