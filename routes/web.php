@@ -7,6 +7,7 @@ use App\Http\Controllers\RaceController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ResultsController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\EnduroKolinController;
 use App\Http\Controllers\TestController;
 
 
@@ -27,7 +28,7 @@ Route::get('/', HomeController::class)->name('index');
 Route::get('zavody/{raceYear}', [RaceController::class, 'index'])->name('race');
 
 Route::get('vysledky/{raceYear}', [ResultsController::class, 'index']);
-//Route::get('vysledky/{raceYear}/{raceId}', [ResultsController::class, 'show']);
+Route::get('enduro-kolin-doplneni-roku-narozeni', [EnduroKolinController::class, 'naplneniDb']);
 
 
 Route::get('registrace/{raceName}/{raceYear}/{raceId}/success', [RegistrationController::class, 'success'])->name('registration_success');
