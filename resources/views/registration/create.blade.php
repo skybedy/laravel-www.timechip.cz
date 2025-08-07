@@ -27,10 +27,10 @@
 
 
 
-@include('registration.submenu',['raceYear' => $raceYear,'raceId' => $raceId,'raceName' => $raceName]) 
+@include('registration.submenu',['raceYear' => $raceYear,'raceId' => $raceId,'raceName' => $raceName])
 
 
-@if($raceId != 8) 
+@if($raceId != 8)
   <form name="model" id="add-blog-post-form" method="post" action="{{ route('registration_post',['raceName' => $raceName,'raceYear' => $raceYear,'raceId' => $raceId]) }}">
     @csrf
     @if(count($eventList['event_list']) > 0)
@@ -42,7 +42,7 @@
                                                   'race_id' => $raceId,
                                                 ])
     @endif
-    
+
     @include('registration.formtypes.type_'.$eventList['current_event']->registration_form_type,['countries' => $countries,'selects' => $selects,'event_age_range' => $eventAgeRange])
 
 </form>
@@ -50,6 +50,6 @@
 <div class="alert alert-danger" role="alert">
   Registrace online byla ukončena, na závod je ale možné se přihlásit v den závodu a v místě jeho konání.
 </div>
-    
+
 @endif
 @endsection

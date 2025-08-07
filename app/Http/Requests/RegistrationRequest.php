@@ -16,7 +16,6 @@ class RegistrationRequest extends FormRequest
     public function rules(Request $request)
     {
         
-     //   dd($request);
         if($request->registration_type == 1)
         {
             $rules = [

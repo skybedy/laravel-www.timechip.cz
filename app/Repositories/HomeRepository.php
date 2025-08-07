@@ -14,7 +14,7 @@ class HomeRepository extends BaseRepository implements HomeRepositoryInterface
 
     public function __construct($attributes)
     {
-        $this->raceYear = 2024;
+        $this->raceYear = 2025;
         parent::__construct($this->raceYear);
     }
 
@@ -43,7 +43,7 @@ class HomeRepository extends BaseRepository implements HomeRepositoryInterface
       if($lastResults->count() < $this->homepageRaceNumber)
       {
        
-        Races::setGlobalTable('zavody_2023');
+        Races::setGlobalTable('zavody_2024');
 
         $lastYearResults  =  Races::with('typZavodu')
         ->whereNotNull('datum_zavodu')

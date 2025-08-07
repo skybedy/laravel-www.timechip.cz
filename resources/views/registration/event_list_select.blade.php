@@ -18,5 +18,5 @@
       </div>
   </div>
 @else
-  <input type="hidden" name="event_order" value="{{ $eventList[0]->poradi_podzavodu }}"
+  <input type="hidden" name="event_order" value="{{ $eventList[0]->poradi_podzavodu }}" />
 @endif

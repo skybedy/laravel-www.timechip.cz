@@ -7,7 +7,6 @@ use App\Http\Requests\ContactRequest;
 use App\Mail\ContactMessage;
 use Illuminate\Http\RedirectResponse;
 use App\Interfaces\HomeRepositoryInterface;
-
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -20,19 +19,29 @@ class ContactController extends Controller
      */
     public function show(HomeRepositoryInterface $homeRepositoryInterface): View
     {
-       // echo "kokok";
-        
         return view('contact.show',[
             'currentRegistrations' => $homeRepositoryInterface->getCurrentRegistration(),
         ]);
     }
 
-    public function send(ContactRequest $request): RedirectResponse
+    public function send(Request $request)
     {
-        //echo "ůkoko";
-        Mail::to(env('MAIL_TO'))->send(new ContactMessage($request->input('email'), $request->input('message')));
+        
+        $validated = $request->validate([
+                'email' => 'required|email',
+                'message' => 'required|string',
+                'captcha' => ['required', function ($attribute, $value, $fail) {
+                    if (trim($value) !== '18') {
+                        $fail('Kontrolní otázka je nesprávně zodpovězena.');
+                    }
+                }],
+            ]);
 
-        return redirect()->route('contact.show');
+
+
+        Mail::to('info@timechip.cz')->send(new ContactMessage($validated['email'], $validated['message']));
+
+        return redirect()->route('contact.show')->with('success', 'Zpráva byla úspěšně odeslána. Děkujeme!');
     }
 
 }

@@ -12,7 +12,7 @@ class Races extends Model
     protected $primaryKey = 'id_zavodu';
 
     //ne, to není dobrý, nevím co s tím zatím
-    protected static $globalTable = "zavody_2024";
+    protected static $globalTable = "zavody_2025";
 
   
     public function __construct()

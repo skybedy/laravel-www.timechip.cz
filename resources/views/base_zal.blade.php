@@ -60,8 +60,12 @@
         </li>
         
         <li class="nav-item dropdown">
-          <a class="nav-link" href="https://entry.timechip.cz">Registrace</a>
-        
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Registrace</a>
+          <ul class="dropdown-menu">
+              @foreach ($currentRegistrations as $registration)
+                  <li><a class="dropdown-item" href="{{ route('registration',['raceName' => StringHelper::slug($registration->nazev_zavodu),'raceYear' => 2025,'raceId' => $registration->id_zavodu]) }}">{{ $registration->nazev_zavodu }}</a></li>
+              @endforeach  
+          </ul>
         </li>
 
         <li class="nav-item">

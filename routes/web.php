@@ -28,7 +28,10 @@ Route::get('/', HomeController::class)->name('index');
 Route::get('zavody/{raceYear}', [RaceController::class, 'index'])->name('race');
 
 Route::get('vysledky/{raceYear}', [ResultsController::class, 'index']);
-Route::get('enduro-kolin-doplneni-roku-narozeni', [EnduroKolinController::class, 'naplneniDb']);
+Route::get('enduro-kolin-doplneni-roku-narozeni/odeslani', [EnduroKolinController::class, 'odeslani']);
+Route::get('enduro-kolin-doplneni-roku-narozeni/{kod}', [EnduroKolinController::class, 'create']);
+
+Route::post('enduro-kolin-doplneni-roku-narozeni', [EnduroKolinController::class, 'store'])->name('enduro_kolin.store');
 
 
 Route::get('registrace/{raceName}/{raceYear}/{raceId}/success', [RegistrationController::class, 'success'])->name('registration_success');
