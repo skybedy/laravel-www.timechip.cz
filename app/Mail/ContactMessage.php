@@ -49,8 +49,13 @@ class ContactMessage extends Mailable
      */
     public function build(): ContactMessage
     {
-        return $this->markdown('emails.contact', [
+        return $this
+        ->from('info@timechip.cz', 'Kontaktní formulář') // správně pro Laravel 8
+        ->replyTo($this->user) // e-mail uživatele z formuláře
+        ->subject('Email z kontaktního formuláře')
+        ->markdown('emails.contact', [
             'message' => $this->message,
-        ])->subject('Email z kontaktního formuláře')->from($this->user);
+            'user' => $this->user,
+        ]);
     }
 }

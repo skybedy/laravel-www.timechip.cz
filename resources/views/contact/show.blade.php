@@ -14,25 +14,40 @@
 
                         <div class="card-body">
                             <h5>Kontaktní formulář</h5>
+
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                             
                             <div id="form-contact-wrapper">
                                 <form action="{{ route('contact.send') }}" method="POST">
                                     @csrf
                                     <div class="form-group mb-3">
                                         <label for="contactFormInputName">Jméno a příjmení</label>
-                                        <input type="text" class="form-control" id="contactFormInputName" name="contactFormInputName" placeholder="Něco tu napište.. " />
+                                        <input type="text" class="form-control" id="contactFormInputName" name="name" value="{{ old('name') }}" placeholder="Napište své jméno" />
                                     </div>
 
                                     <div class="form-group mb-3">
                                         <label for="contactFormInputEmail">Email</label>
-                                        <input type="email" class="form-control" id="contactFormInputEmail" name="email" placeholder=".. tady taky.. ">
+                                        <input type="email" class="form-control" id="contactFormInputEmail" name="email" value="{{ old('email') }}" placeholder="Tady svůj email">
                                     </div>
 
 
                                     <div class="form-group mb-3">
                                         <label for="contactFormInputMessage">Vaše zpráva</label>
-                                        <textarea name="message" id="contactFormInputMessage" class="form-control" rows="10" placeholder=".. a teď, co máte na srdci. :-)"></textarea>
+                                        <textarea name="message" id="contactFormInputMessage" class="form-control" rows="10"  placeholder="A tady, co máte na srdci">{{ old('message') }}</textarea>
                                     </div>
+
+                                    <div class="form-group mb-3">
+                                        <label for="captcha">Kolik je 33-15?</label>
+                                        <input type="text" class="form-control" name="captcha" id="captcha" placeholder="Odpověď">
+                                    </div>
+
+@error('captcha')
+    <small class="text-danger">{{ $message }}</small>
+@enderror
                                     
                                      <button type="submit" class="btn btn-default btn-primary">Odeslat</button>
                                 </form>
