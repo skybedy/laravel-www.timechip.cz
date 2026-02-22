@@ -31,7 +31,7 @@ class ContactController extends Controller
                 'email' => 'required|email',
                 'message' => 'required|string',
                 'captcha' => ['required', function ($attribute, $value, $fail) {
-                    if (trim($value) !== '18') {
+                    if (trim($value) !== '118') {
                         $fail('Kontrolní otázka je nesprávně zodpovězena.');
                     }
                 }],

@@ -41,7 +41,7 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="captcha">Kolik je 33-15?</label>
+                                        <label for="captcha">Kolik je 133-15?</label>
                                         <input type="text" class="form-control" name="captcha" id="captcha" placeholder="Odpověď">
                                     </div>
 
