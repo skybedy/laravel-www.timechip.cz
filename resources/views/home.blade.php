@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('title', 'Hlaví strana')
+@section('title', 'Hlavní strana')
 
 @section('h1', 'Hlavní strana')
 
